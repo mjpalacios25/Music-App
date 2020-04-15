@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Passport Authentication</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<h1>Welcome</h1>
+<form action="/logout?_method=DELETE" method="POST">
+    <button type="submit">Log Out</button>
+</form>
+<div id="waveform"></div>
+<button type="submit" id="play">Play/Pause</button>
+
+<div class="list-group" id="playlist">
+    <a href="./assets/China_Girl.mp3" class="list-group-item">
+        
+        China Girl
+    </a>
+
+    <a href="./assets/Rockstar.mp3" class="list-group-item">
+        
+        Rockstar
+    </a>
+
+    <a href="./assets/Smack_That.mp3" class="list-group-item">
+        
+        Smack That
+    </a>
+
+</div>
+
+</body>
+
+<script src="https://unpkg.com/wavesurfer.js"></script>
+
+<script>
+    var wavesurfer = WaveSurfer.create({
+    container: '#waveform',
+    waveColor: 'violet',
+    progressColor: 'purple'
+    });
+
+
+document.querySelector('[id="play"]').addEventListener('click', wavesurfer.playPause.bind(wavesurfer))
+
+// The playlist links
+var links = document.querySelectorAll('#playlist a');
+    var currentTrack = 0;
+
+    // Load a track by index and highlight the corresponding link
+    var setCurrentSong = function(index) {
+        links[currentTrack].classList.remove('active');
+        currentTrack = index;
+        links[currentTrack].classList.add('active');
+        wavesurfer.load(links[currentTrack].href);
+    };
+
+    // Load the track on click
+    Array.prototype.forEach.call(links, function(link, index) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            setCurrentSong(index);
+        });
+    });
+
+    // Play on audio load
+    wavesurfer.on('ready', function() {
+        wavesurfer.play();
+    });
+
+    wavesurfer.on('error', function(e) {
+        console.warn(e);
+    });
+
+    // Go to the next track on finish
+    wavesurfer.on('finish', function() {
+        setCurrentSong((currentTrack + 1) % links.length);
+    });
+
+    // Load the first track
+    setCurrentSong(currentTrack);
+
+</script>
+</html>
