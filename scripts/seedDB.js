@@ -18,4 +18,16 @@ const userSeed = [{
     profilepic: 1234,
     friends: ["mike", "steve", "george", "katherine", "tom"]
 }
-]
+];
+
+db.User
+    .remove({})
+    .then(() => db.User.collection.insertMany(userSeed))
+    .then(data => {
+        console.log(data.result.n + " records inserted!");
+        process.exit(0);
+    })
+    .catch(err => {
+        console.error(err);
+        process.exit(1);
+      });

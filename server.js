@@ -1,5 +1,4 @@
 const express = require("express");
-const logger = require("morgan");
 const mongoose = require("mongoose");
 const routes = require("./routes")
 
@@ -17,14 +16,9 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(routes);
 
-app.use(logger("dev"));
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/usersdb", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/usersdirectory");
 
 
 
