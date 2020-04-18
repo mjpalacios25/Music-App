@@ -4,7 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "if-env NODE_ENV=production && npm run seed && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "seed": "node scripts/seedDB.js",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -17,7 +24,9 @@
   },
   "homepage": "https://github.com/epw1389/Music-App#readme",
   "dependencies": {
+    "axios": "^0.19.2",
     "express": "^4.17.1",
+    "if-env": "^1.0.4",
     "mongoose": "^5.9.7",
     "morgan": "^1.10.0"
   }
