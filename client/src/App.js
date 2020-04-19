@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {Nav} from './components/NavBar';
 import {MusicCard, Song} from './components/List';
+import {Input, SubmitBtn} from "./components/Form"
 import API from "./utils/API";
 import axios from "axios";
 
@@ -8,12 +9,13 @@ var request = require('request'); // "Request" library
 
 function App() {
   const [userState, setUser] = useState([]);
-  const [songState, setSongs] = useState([]);
+  const [resultState, setResults] = useState([]);
+  const [artistState, setArtist] = useState();
   const searchUrl = "https://api.spotify.com/v1/search?q="
 
   useEffect(() => {
     loadusers();
-    loadartist()
+    
   }, []);
 
   function loadusers() {
@@ -25,16 +27,23 @@ function App() {
       .catch(err => console.log(err))
   };
 
-  function loadartist() {
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+    setArtist({...artistState, [name]: value});
+    console.log(artistState)
+  };
 
+  //function to load artist
+  function loadartist(event) {
+    event.preventDefault();
     let client_id = '9b0a14a74c624641947e67fd2eaafbf6', // Your client id
      client_secret = '6f975753ea5a46708e876e54750806c7'; // Your secret
 
-    let artist = "Bruce Springsteen",
+    let artist = artistState.artistsearch ,
       type = "&type=artist",
-      Url = searchUrl + artist + type;
+      compiledUrl = searchUrl + artist + type;
 
-    console.log(Url)
+    console.log(compiledUrl)
 
     // your application requests authorization
     var authOptions = {
@@ -54,7 +63,7 @@ function App() {
         // use the access token to access the Spotify Web API
         var token = body.access_token;
         var options = {
-          url: Url,
+          url: compiledUrl,
           headers: {
             'Authorization': 'Bearer ' + token
           },
@@ -62,20 +71,19 @@ function App() {
         };
         request.get(options, function (error, response, body) {
           console.log(body);
+          setResults(body.artists.items);
+          
         });
       }
     });
-
-    
-      //axios.get(Url)
         
-    
-  }
+  };
 
   return (
     <div >
+      
       <Nav />
-
+    
       {userState.length ? (
         <MusicCard>
           {userState.map(user => (
@@ -87,7 +95,27 @@ function App() {
       ) : (
         <h2>No Users</h2>
       ) }
-   
+      <form className="form-inline">
+      <Input 
+      label = "Search for Artists"
+      //describeby = "artisthelp"
+      //description = "Search for artist or band"
+      onChange = {handleInputChange}
+      name = "artistsearch"
+      
+      />
+      <SubmitBtn onClick={loadartist} > Submit </SubmitBtn>
+      </form>
+      {resultState.length ? (
+        <MusicCard>
+          {resultState.map(results => (
+            <Song key={results._id}>
+              <p> {results.name} </p>
+            </Song>
+          ))}
+        </MusicCard>
+      ) : (" ")}
+      
     </div>
   );
 }
