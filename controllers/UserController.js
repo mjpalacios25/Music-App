@@ -4,14 +4,14 @@ module.exports = {
     findAll: function(req, res) {
         db.User
             .find(req.query)
-            .populate("playlists")
+            .populate("playlists") //popuplates each user with playlist data
             .then(dbUser => res.json(dbUser))
             .catch(err => res.status(422).json(err))
     },
     findbyID: function(req, res){
         db.User
             .findById(req.params.id)
-            .populate("playlists")
+            .populate("playlists") //populates a specific user with playlist data
             .then(dbUser => res.json(dbUser))
             .catch(err => res.status(422).json(err))
     },
