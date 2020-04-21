@@ -7,10 +7,7 @@ const UserSchema = new Schema({
     type: String,
     unique: true
   },
-  password: {
-    type: String,
-    unique: true
-  },
+  password: String,
   profilepic: {
     type: Buffer,
     contentType: String

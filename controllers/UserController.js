@@ -4,13 +4,14 @@ module.exports = {
     findAll: function(req, res) {
         db.User
             .find(req.query)
-            .sort({name: 1})
+            .populate("playlists")
             .then(dbUser => res.json(dbUser))
             .catch(err => res.status(422).json(err))
     },
     findbyID: function(req, res){
         db.User
             .findById(req.params.id)
+            .populate("playlists")
             .then(dbUser => res.json(dbUser))
             .catch(err => res.status(422).json(err))
     },

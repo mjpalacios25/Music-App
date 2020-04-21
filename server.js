@@ -17,6 +17,8 @@ app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populatedb", { useNewUrlParser: true });
 
+
+
 db.User.create({
   username: "mojeezy",
   password: "testpassword",
@@ -28,7 +30,7 @@ db.User.create({
   })
   .catch(({ message }) => {
     console.log(message);
-  });
+});
 
 db.Playlist.create({
   playlistname: [{
@@ -45,12 +47,25 @@ db.Playlist.create({
   }],
   favoritesongs: ["modern love", "fire", "midnight sonata"]
 })
+  .then(({ _id }) => db.User.findOneAndUpdate({}, { $push: { playlists: _id } }, { new: true }))
   .then(dbPlaylist => {
     console.log(dbPlaylist);
   })
   .catch(({ message }) => {
     console.log(message);
   });
+
+app.get("/populateduser", (req, res) => {
+  db.User.find({username: "mojeezy"})
+    .populate("playlists")
+    .then(dbUser => {
+      res.json(dbUser);
+    })
+    .catch(({ message }) => {
+      console.log(message);
+    })
+  });
+
 
 
 app.listen(PORT, () => {
