@@ -34,13 +34,13 @@ function App() {
   };
 
   //function to load artist
-  function loadartist(event) {
+  function loadartist(event, typeSearch) {
     event.preventDefault();
     let client_id = '9b0a14a74c624641947e67fd2eaafbf6', // Your client id
      client_secret = '6f975753ea5a46708e876e54750806c7'; // Your secret
 
     let artist = artistState.artistsearch ,
-      type = "&type=artist",
+      type = "&type=" + typeSearch,
       compiledUrl = searchUrl + artist + type;
 
     console.log(compiledUrl)
@@ -70,8 +70,21 @@ function App() {
           json: true
         };
         request.get(options, function (error, response, body) {
-          console.log(body);
-          setResults(body.artists.items);
+          //add if statment for artist, songs, albums
+          if(typeSearch === "artist") {
+            console.log(body);
+            setResults(body.artists.items);
+          };
+          
+          if(typeSearch === "album") {
+            console.log(body);
+            setResults(body.albums.items);
+          };
+
+          if(typeSearch === "track") {
+            console.log(body);
+            setResults(body.tracks.items);
+          };
           
         });
       }
@@ -96,15 +109,31 @@ function App() {
         <h2>No Users</h2>
       ) }
       <form className="form-inline">
+
       <Input 
       label = "Search for Artists"
-      //describeby = "artisthelp"
-      //description = "Search for artist or band"
       onChange = {handleInputChange}
       name = "artistsearch"
       
       />
-      <SubmitBtn onClick={loadartist} > Submit </SubmitBtn>
+      <SubmitBtn onClick={ (event) => loadartist(event, "artist")} > Submit </SubmitBtn>
+
+      <Input 
+      label = "Search for Albums"
+      onChange = {handleInputChange}
+      name = "artistsearch"
+      
+      />
+      <SubmitBtn onClick={(event) => loadartist(event, "album")} > Submit </SubmitBtn>
+
+      <Input 
+      label = "Search for Songs"
+      onChange = {handleInputChange}
+      name = "artistsearch"
+      
+      />
+      <SubmitBtn onClick={(event) => loadartist(event, "track")} > Submit </SubmitBtn>
+      
       </form>
       {resultState.length ? (
         <MusicCard>
