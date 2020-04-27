@@ -8,7 +8,7 @@ import axios from "axios";
 var request = require('request'); // "Request" library
 
 function App() {
-  const [userState, setUser] = useState([]);
+  const [userState, setUser] = useState({});
   const [resultState, setResults] = useState([]);
   const [artistState, setArtist] = useState();
   const searchUrl = "https://api.spotify.com/v1/search?q="
@@ -19,10 +19,11 @@ function App() {
   }, []);
 
   function loadusers() {
-    API.getUsers()
+    const id = "5e9a5d15d80a121abe1782cb";
+    API.getSingleUser(id)
       .then(res => {
-        console.log(res);
-        setUser(res.data)
+        console.log({res});
+        setUser(res.data);
       })
       .catch(err => console.log(err))
   };
@@ -96,8 +97,16 @@ function App() {
     <div >
       
       <Nav />
+
+      <MusicCard>
+          
+            <Song key={userState._id}>
+              <p>{userState.username}</p>
+            </Song>
+         
+      </MusicCard>
     
-      {userState.length ? (
+      {/* {userState.length ? (
         <MusicCard>
           {userState.map(user => (
             <Song key={user._id}>
@@ -107,7 +116,7 @@ function App() {
         </MusicCard>
       ) : (
         <h2>No Users</h2>
-      ) }
+      ) } */}
       <form className="form-inline">
 
       <Input 
@@ -140,6 +149,7 @@ function App() {
           {resultState.map(results => (
             <Song key={results._id}>
               <p> {results.name} </p>
+              <SubmitBtn>Add to Playlist</SubmitBtn>
             </Song>
           ))}
         </MusicCard>

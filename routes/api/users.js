@@ -1,9 +1,10 @@
 const router = require("express").Router();
 const usersController = require("../../controllers/UserController");
+const playlistController = require("../../controllers/PlaylistController");
 
 router.route("/")
     .get(usersController.findAll)
-    .post(usersController.create)
+    .post(playlistController.create)
 
 
 router.route("/:id")

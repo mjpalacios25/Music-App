@@ -5,4 +5,8 @@ export default {
         return axios.get("/api/users")
     },
 
+    getSingleUser: function(id){
+        return axios.get("/api/users/" + id)
+    }
+
 }
