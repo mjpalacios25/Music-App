@@ -6,7 +6,7 @@ export default {
     },
 
     getSingleUser: function(id){
-        return axios.get("/api/users/" + id)
+        return axios.get("/api/users/" + id) //test
     }
 
 }
