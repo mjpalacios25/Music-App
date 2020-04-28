@@ -11,6 +11,7 @@ function App() {
   const [userState, setUser] = useState({});
   const [resultState, setResults] = useState([]);
   const [artistState, setArtist] = useState();
+  const [playlistState, setPlaylist] = useState([]);
   const searchUrl = "https://api.spotify.com/v1/search?q="
 
   useEffect(() => {
@@ -34,7 +35,13 @@ function App() {
     console.log(artistState)
   };
 
-  //function to load artist
+  function handlePlaylistChange(event) {
+    const { name, value } = event.target;
+    setPlaylist({...playlistState, [name]: value});
+    console.log(playlistState)
+  };
+
+  //function to load artist, album, or track
   function loadartist(event, typeSearch) {
     event.preventDefault();
     let client_id = '9b0a14a74c624641947e67fd2eaafbf6', // Your client id
@@ -93,6 +100,10 @@ function App() {
         
   };
 
+  function loadPlaylists(){
+
+  };
+
   return (
     <div >
       
@@ -105,6 +116,28 @@ function App() {
             </Song>
          
       </MusicCard>
+
+      <form className="form-inline">
+
+      <Input 
+      label = "Create a Playlist"
+      onChange = {handlePlaylistChange}
+      name = "playlistcreate"
+      
+      />
+      <SubmitBtn onClick={ (event) => loadPlaylists(event)} > Create Playlist </SubmitBtn>
+      </form>
+      {playlistState.length ? (
+        <MusicCard>
+          {playlistState.map(playlists => (
+            <Song key={playlists._id}>
+              <p>{playlists.playlistname}</p>
+            </Song>
+          ))}
+        </MusicCard>
+      ) : (
+        <h2>No playlists</h2>
+      ) }
     
       {/* {userState.length ? (
         <MusicCard>

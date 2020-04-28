@@ -6,7 +6,11 @@ export default {
     },
 
     getSingleUser: function(id){
-        return axios.get("/api/users/" + id) //test
+        return axios.get("/api/users/" + id) 
+    },
+
+    getPlaylists: function(id){
+        return axios.get("/api/playlists/" + id)
     }
 
 }

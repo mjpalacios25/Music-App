@@ -12,5 +12,8 @@ router.route("/:id")
     .delete(usersController.remove)
     .put(usersController.update)
 
+router.route("/playlists/:id")
+    .get(playlistController.findbyID)
+    .put(playlistController.update)
 
 module.exports = router;
