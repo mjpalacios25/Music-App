@@ -11,7 +11,8 @@ function App() {
   const [userState, setUser] = useState({});
   const [resultState, setResults] = useState([]);
   const [artistState, setArtist] = useState();
-  const [playlistState, setPlaylist] = useState([]);
+  const [newPlaylistState, setNewPlaylist] = useState([]);
+  const [playlistState, setPlaylist] = useState({});
   const searchUrl = "https://api.spotify.com/v1/search?q="
 
   useEffect(() => {
@@ -20,13 +21,27 @@ function App() {
   }, []);
 
   function loadusers() {
-    const id = "5e9a5d15d80a121abe1782cb";
+    const id = "5e9a5d15d80a121abe1782cc";
     API.getSingleUser(id)
       .then(res => {
         console.log({res});
         setUser(res.data);
       })
       .catch(err => console.log(err))
+  };
+  
+  function createPlaylist(event){
+    event.preventDefault();
+    //create and retrieve playlists
+    const id = "5e9a5d15d80a121abe1782cc";
+    console.log(playlistState);
+  
+    
+    API.createPlaylist(id, playlistState)
+      .then( res => {
+        console.log(res.data);
+        //setPlaylist(res.data.playlists)
+      })
   };
 
   function handleInputChange(event) {
@@ -100,13 +115,10 @@ function App() {
         
   };
 
-  function loadPlaylists(){
 
-  };
 
   return (
     <div >
-      
       <Nav />
 
       <MusicCard>
@@ -122,16 +134,16 @@ function App() {
       <Input 
       label = "Create a Playlist"
       onChange = {handlePlaylistChange}
-      name = "playlistcreate"
+      name = "playlistname"
       
       />
-      <SubmitBtn onClick={ (event) => loadPlaylists(event)} > Create Playlist </SubmitBtn>
+      <SubmitBtn onClick={ (event) => createPlaylist(event)} > Create Playlist </SubmitBtn>
       </form>
-      {playlistState.length ? (
+      {userState.playlists ? (
         <MusicCard>
-          {playlistState.map(playlists => (
-            <Song key={playlists._id}>
-              <p>{playlists.playlistname}</p>
+          {userState.playlists.map(user => (
+            <Song key={user.playlists}>
+              <p>{user.playlistname}</p>
             </Song>
           ))}
         </MusicCard>

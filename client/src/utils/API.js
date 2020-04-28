@@ -10,7 +10,11 @@ export default {
     },
 
     getPlaylists: function(id){
-        return axios.get("/api/playlists/" + id)
+        return axios.get("/api/users/playlists/" + id)
+    },
+
+    createPlaylist: function(id, {playlist}){
+        return axios.post("/api/users/" + id, {playlist})
     }
 
 }
