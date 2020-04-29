@@ -19,6 +19,10 @@ export default {
 
     removePlaylist: function(id){
         return axios.delete("/api/users/" + id)
+    },
+
+    updatePlaylist: function(id, song){
+        return axios.put("/api/users/playlists/" + id, song)
     }
 
 }

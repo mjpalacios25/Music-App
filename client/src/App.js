@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {Nav} from './components/NavBar';
 import {List, ListItem} from './components/List';
-import {Input, SubmitBtn} from "./components/Form"
+import {Input, SubmitBtn, SelectDrop, SelectItem} from "./components/Form"
 import API from "./utils/API";
-import axios from "axios";
-import { Collection } from 'mongoose';
+
 
 var request = require('request'); // "Request" library
 
@@ -12,6 +11,7 @@ function App() {
   const [userState, setUser] = useState({});
   const [resultState, setResults] = useState([]);
   const [artistState, setArtist] = useState();
+  const [songState, setSong] = useState([]);
   const [newPlaylistState, setNewPlaylist] = useState({});
   const [playlistState, setPlaylist] = useState({});
   const searchUrl = "https://api.spotify.com/v1/search?q="
@@ -63,6 +63,22 @@ function App() {
       })
   };
 
+  function addToPlaylist(event,results){
+    event.preventDefault();
+    console.log({results}, event.target);
+    
+    const {id, artists:[ {name: artistname} ]} = results;
+    console.log(id, artistname)
+
+    // API.updatePlaylist(id, song)
+    //   .then( res => {
+    //     console.log(res.data);
+    //     setUser(res.data);
+    //     loadusers();
+
+    //   })
+  }
+
   function handleInputChange(event) {
     const { name, value } = event.target;
     setArtist({...artistState, [name]: value});
@@ -83,7 +99,7 @@ function App() {
 
     let artist = artistState.artistsearch ,
       type = "&type=" + typeSearch,
-      compiledUrl = searchUrl + artist + type;
+      compiledUrl = `${searchUrl}${artist}${type}&limit=5`;
 
     console.log(compiledUrl)
 
@@ -114,7 +130,7 @@ function App() {
         request.get(options, function (error, response, body) {
           //add if statment for artist, songs, albums
           if(typeSearch === "artist") {
-            console.log(body);
+            console.log(body.artists.items);
             setResults(body.artists.items);
           };
           
@@ -125,7 +141,7 @@ function App() {
 
           if(typeSearch === "track") {
             console.log(body);
-            setResults(body.tracks.items);
+            setSong(body.tracks.items);
           };
           
         });
@@ -163,7 +179,6 @@ function App() {
           {userState.playlists.map(user => (
             <ListItem key={user._id}>
               <p>{user.name}</p>
-              <p> {user._id} </p>
               <SubmitBtn onClick={ (event) => deletePlaylist(event, user._id)}>Delete Playlist</SubmitBtn>
             </ListItem>
           ))}
@@ -213,9 +228,33 @@ function App() {
       {resultState.length ? (
         <List>
           {resultState.map(results => (
-            <ListItem key={results._id}>
+            <ListItem key={results.id}>
+              <img 
+              src = {results.images.length ? (results.images[0].url) : (" ")}
+              style={{ width: "200px", margin: "0 auto" }}
+              />
               <p> {results.name} </p>
               <SubmitBtn>Add to Playlist</SubmitBtn>
+            </ListItem>
+          ))}
+        </List>
+      ) : (" ")}
+
+
+
+      {songState.length ? (
+        <List>
+          {songState.map(results => (
+            <ListItem key={results.id}>
+              <p> {results.name} </p>
+              {userState.playlists ? (
+              <SelectDrop onChange={(event) => addToPlaylist(event,results)} >
+                {userState.playlists.map(playlist => (
+                  <SelectItem key={playlist._id} > {playlist.name} </SelectItem>
+                ))}
+                
+              </SelectDrop>) : ( " " )}
+              
             </ListItem>
           ))}
         </List>

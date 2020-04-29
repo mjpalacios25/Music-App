@@ -32,6 +32,7 @@ module.exports = {
         console.log(req)
         db.Playlist
             .findById({ _id: req.params.id })
+            .sort({ name: 1 })
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));

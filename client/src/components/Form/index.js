@@ -14,4 +14,21 @@ export function SubmitBtn(props) {
     return(
         <button {...props} type="submit" className="btn btn-primary mb-3 mx-2 float-right"> {props.children} </button>
     )
-}
+};
+
+export function SelectDrop(props){
+    return (
+        <select defaultValue="1" className="custom-select custom-select-lg mb-3" {...props}>
+            <option disabled value="1">Add to Playlist</option>
+            {props.children}
+        </select>
+    )
+};
+
+export function SelectItem({children}){
+    return (
+        <option >
+            {children}
+        </option>
+    )
+};
