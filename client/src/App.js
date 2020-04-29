@@ -12,7 +12,6 @@ function App() {
   const [resultState, setResults] = useState([]);
   const [artistState, setArtist] = useState();
   const [songState, setSong] = useState([]);
-  const [newPlaylistState, setNewPlaylist] = useState({});
   const [playlistState, setPlaylist] = useState({});
   const searchUrl = "https://api.spotify.com/v1/search?q="
 
@@ -65,18 +64,25 @@ function App() {
 
   function addToPlaylist(event,results){
     event.preventDefault();
-    console.log({results}, event.target);
+    console.log({results}, event.target.value);
     
-    const {id, artists:[ {name: artistname} ]} = results;
-    console.log(id, artistname)
+    const {id, name, artists:[ {name: artistname} ]} = results;
 
-    // API.updatePlaylist(id, song)
-    //   .then( res => {
-    //     console.log(res.data);
-    //     setUser(res.data);
-    //     loadusers();
+    const song = {
+      songID: id,
+      name: name,
+      artist: artistname
+    };
 
-    //   })
+    console.log(song)
+
+    API.updatePlaylist(event.target.value, song)
+      .then( res => {
+        console.log(res.data);
+        setUser(res.data);
+        loadusers();
+
+      })
   }
 
   function handleInputChange(event) {
@@ -87,8 +93,8 @@ function App() {
 
   function handlePlaylistChange(event) {
     const { name, value } = event.target;
-    setPlaylist({...playlistState, name: value});
-    console.log(playlistState)
+    //setPlaylist({...playlistState, name: value});
+    console.log(name, value)
   };
 
   //function to load artist, album, or track
@@ -246,11 +252,12 @@ function App() {
         <List>
           {songState.map(results => (
             <ListItem key={results.id}>
-              <p> {results.name} </p>
+              <p> Song: {results.name} </p>
+              <p> Artist: {results.artists[0].name} </p>
               {userState.playlists ? (
               <SelectDrop onChange={(event) => addToPlaylist(event,results)} >
                 {userState.playlists.map(playlist => (
-                  <SelectItem key={playlist._id} > {playlist.name} </SelectItem>
+                  <SelectItem key={playlist._id} value={playlist._id} > {playlist.name} </SelectItem>
                 ))}
                 
               </SelectDrop>) : ( " " )}

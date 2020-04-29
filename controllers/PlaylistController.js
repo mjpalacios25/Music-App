@@ -23,9 +23,10 @@ module.exports = {
             .catch(err => res.status(422).json(err))
     },
     update: function (req, res) {
+        console.log(req)
         db.Playlist
-            .findOneAndUpdate({ _id: req.params.id }, req.body)
-            .then(dbModel => res.json(dbModel))
+            .findOneAndUpdate({ _id: req.params.id },{ $push: { songs: req.body } }, { new: true })
+            .then(dbModel => console.log(dbModel))
             .catch(err => res.status(422).json(err));
     },
     remove: function (req, res) {

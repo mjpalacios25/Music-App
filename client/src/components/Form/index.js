@@ -25,10 +25,10 @@ export function SelectDrop(props){
     )
 };
 
-export function SelectItem({children}){
+export function SelectItem(props){
     return (
-        <option >
-            {children}
+        <option value={props.value} {...props}>
+            {props.children}
         </option>
     )
 };
