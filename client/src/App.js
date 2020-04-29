@@ -186,7 +186,7 @@ function App() {
           {userState.playlists.map(user => (
             <ListItem key={user._id}>
               <p>{user.name}</p>
-              {user.songs.length ? ( 
+              {user.songs ? ( 
               <ul> {user.songs.map(songs => (
                 <li> {songs.name} </li>
               ))} </ul> ) : 
