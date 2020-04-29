@@ -26,7 +26,7 @@ module.exports = {
         console.log(req)
         db.Playlist
             .findOneAndUpdate({ _id: req.params.id },{ $push: { songs: req.body } }, { new: true })
-            .then(dbModel => console.log(dbModel))
+            .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     remove: function (req, res) {
