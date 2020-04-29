@@ -1,123 +1,86 @@
-import React, { useState, useEffect } from 'react';
-import {Nav} from './components/NavBar';
-import {MusicCard, Song} from './components/List';
-import {Input, SubmitBtn} from "./components/Form"
-import API from "./utils/API";
+import React, {Component} from 'react';
 import axios from "axios";
+import {Route, NavLink, HashRouter} from 'react-router-dom';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Home from './pages/Home';
+import Profile from "./pages/Profile";
 
-var request = require('request'); // "Request" library
 
-function App() {
-  const [userState, setUser] = useState([]);
-  const [resultState, setResults] = useState([]);
-  const [artistState, setArtist] = useState();
-  const searchUrl = "https://api.spotify.com/v1/search?q="
 
-  useEffect(() => {
-    loadusers();
-    
-  }, []);
 
-  function loadusers() {
-    API.getUsers()
-      .then(res => {
-        console.log(res);
-        setUser(res.data)
-      })
-      .catch(err => console.log(err))
-  };
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      loggedIn: false,
+      username: null
+    }
 
-  function handleInputChange(event) {
-    const { name, value } = event.target;
-    setArtist({...artistState, [name]: value});
-    console.log(artistState)
-  };
+    this.getUser = this.getUser.bind(this)
+    this.componentDidMount = this.componentDidMount.bind(this)
+    this.updateUser = this.updateUser.bind(this)
+  }
 
-  //function to load artist
-  function loadartist(event) {
-    event.preventDefault();
-    let client_id = '9b0a14a74c624641947e67fd2eaafbf6', // Your client id
-     client_secret = '6f975753ea5a46708e876e54750806c7'; // Your secret
+  componentDidMount() {
+    this.getUser()
+  }
 
-    let artist = artistState.artistsearch ,
-      type = "&type=artist",
-      compiledUrl = searchUrl + artist + type;
+  updateUser (userObject) {
+    this.setState(userObject)
+  }
 
-    console.log(compiledUrl)
+  getUser() {
+    axios.get('/api/users/').then(response => {
+      console.log('Get user response: ')
+      console.log(response.data)
+      if (response.data.user) {
+        console.log('Get User: There is a user saved in the server session: ')
 
-    // your application requests authorization
-    var authOptions = {
-      url: 'https://accounts.spotify.com/api/token',
-      headers: {
-        'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
-      },
-      form: {
-        grant_type: 'client_credentials'
-      },
-      json: true
-    };
-
-    request.post(authOptions, function (error, response, body) {
-      if (!error && response.statusCode === 200) {
-
-        // use the access token to access the Spotify Web API
-        var token = body.access_token;
-        var options = {
-          url: compiledUrl,
-          headers: {
-            'Authorization': 'Bearer ' + token
-          },
-          json: true
-        };
-        request.get(options, function (error, response, body) {
-          console.log(body);
-          setResults(body.artists.items);
-          
-        });
+        this.setState({
+          loggedIn: true,
+          username: response.data.user.username
+        })
+      } else {
+        console.log('Get user: no user');
+        this.setState({
+          loggedIn: false,
+          username: null
+        })
       }
-    });
-        
-  };
+    })
+  } 
 
+  render() {
   return (
-    <div >
-      
-      <Nav />
+    <HashRouter>
+    <div className="container">
     
-      {userState.length ? (
-        <MusicCard>
-          {userState.map(user => (
-            <Song key={user._id}>
-              <p>{user.username}</p>
-            </Song>
-          ))}
-        </MusicCard>
-      ) : (
-        <h2>No Users</h2>
-      ) }
-      <form className="form-inline">
-      <Input 
-      label = "Search for Artists"
-      //describeby = "artisthelp"
-      //description = "Search for artist or band"
-      onChange = {handleInputChange}
-      name = "artistsearch"
-      
-      />
-      <SubmitBtn onClick={loadartist} > Submit </SubmitBtn>
-      </form>
-      {resultState.length ? (
-        <MusicCard>
-          {resultState.map(results => (
-            <Song key={results._id}>
-              <p> {results.name} </p>
-            </Song>
-          ))}
-        </MusicCard>
-      ) : (" ")}
-      
+      <ul>
+          <li> <NavLink to='/' id='home' style={{ color: 'white'}}>Home</NavLink></li>
+          <div id='logreg'>
+          <li> <NavLink to='/login' style={{ color: 'white'}}> Login </NavLink></li> <span id="slash"> / </span>
+          <li><NavLink to='/register' style={{ color: 'white'}}> Register </NavLink></li>
+          </div>
+      </ul>
+      <div className="content">
+      <Route path='/' component={Home} />
+      <Route path='/login'
+        render={() =>
+            <Login
+              updateUser={this.updateUser}
+            />} />
+      <Route path='/register' component={Register} />
+      <Route path='/profile'
+        render={() =>
+            <Profile
+              updateUser={this.updateUser}
+            />} />
+      </div>
     </div>
+    </HashRouter>
   );
+}
 }
 
 export default App;

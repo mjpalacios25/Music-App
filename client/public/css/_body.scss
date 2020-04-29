@@ -1,0 +1,36 @@
+@import './variables';
+
+body {
+    background-color: $bkrnd;
+}
+
+
+#slash {
+    color: white;
+  }
+
+li {
+    list-style-type: none;
+    display: inline-block;  
+    font-family: $drip;
+    font-size: 30px;
+}
+
+label {
+    font-family:$drip;
+    color:white;
+}
+
+#logreg {
+    float: right;
+}
+
+video {
+    width:100%;
+    height:500px;
+}
+
+.home {
+    background-image:url(https://media.giphy.com/media/xWlgutH3ZZF6w/source.gif);
+    border:50px solid rg;
+}

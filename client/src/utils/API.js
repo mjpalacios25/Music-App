@@ -4,6 +4,12 @@ export default {
     getUsers: function() {
         return axios.get("/api/users")
     },
+    registerUser: function() {
+        return axios.post("/api/users/")
+    },
+    loginUser: function () {
+        return axios.post("/api/users/login")
+    },
 
     getSingleUser: function(id){
         return axios.get("/api/users/" + id) 
