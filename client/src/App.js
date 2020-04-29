@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import {Nav} from './components/NavBar';
-import {MusicCard, Song} from './components/List';
+import {List, ListItem} from './components/List';
 import {Input, SubmitBtn} from "./components/Form"
 import API from "./utils/API";
 import axios from "axios";
+import { Collection } from 'mongoose';
 
 var request = require('request'); // "Request" library
 
@@ -11,7 +12,7 @@ function App() {
   const [userState, setUser] = useState({});
   const [resultState, setResults] = useState([]);
   const [artistState, setArtist] = useState();
-  const [newPlaylistState, setNewPlaylist] = useState([]);
+  const [newPlaylistState, setNewPlaylist] = useState({});
   const [playlistState, setPlaylist] = useState({});
   const searchUrl = "https://api.spotify.com/v1/search?q="
 
@@ -21,7 +22,7 @@ function App() {
   }, []);
 
   function loadusers() {
-    const id = "5ea8b896d47e26233bfb92e0";
+    const id = "5ea8c3eebb48ce2f46ef9806";
     API.getSingleUser(id)
       .then(res => {
         console.log({res});
@@ -32,15 +33,33 @@ function App() {
   
   function createPlaylist(event){
     event.preventDefault();
-    //create and retrieve playlists
-    const id = "5ea8b896d47e26233bfb92e0";
-    console.log(playlistState);
-  
     
+    //create and retrieve playlists
+    const id = "5ea8c3eebb48ce2f46ef9806";
+
+    console.log(playlistState)
+
     API.createPlaylist(id, playlistState)
       .then( res => {
         console.log(res.data);
-        //setPlaylist(res.data.playlists)
+        setUser(res.data);
+        loadusers();
+
+      })
+  };
+
+  function deletePlaylist(event, id){
+    event.preventDefault()
+    //delete and retrieve playlists
+
+    console.log(id)
+
+    API.removePlaylist(id, playlistState)
+      .then( res => {
+        console.log(res.data);
+        setUser(res.data);
+        loadusers();
+
       })
   };
 
@@ -52,7 +71,7 @@ function App() {
 
   function handlePlaylistChange(event) {
     const { name, value } = event.target;
-    setPlaylist({...playlistState, [name]: value});
+    setPlaylist({...playlistState, name: value});
     console.log(playlistState)
   };
 
@@ -121,13 +140,13 @@ function App() {
     <div >
       <Nav />
 
-      <MusicCard>
+      <List>
           
-            <Song key={userState._id}>
+            <ListItem key={userState._id}>
               <p>{userState.username}</p>
-            </Song>
+            </ListItem>
          
-      </MusicCard>
+      </List>
 
       <form className="form-inline">
 
@@ -140,13 +159,15 @@ function App() {
       <SubmitBtn onClick={ (event) => createPlaylist(event)} > Create Playlist </SubmitBtn>
       </form>
       {userState.playlists ? (
-        <MusicCard>
+        <List>
           {userState.playlists.map(user => (
-            <Song key={user.playlists}>
-              <p>{user.playlistname}</p>
-            </Song>
+            <ListItem key={user._id}>
+              <p>{user.name}</p>
+              <p> {user._id} </p>
+              <SubmitBtn onClick={ (event) => deletePlaylist(event, user._id)}>Delete Playlist</SubmitBtn>
+            </ListItem>
           ))}
-        </MusicCard>
+        </List>
       ) : (
         <h2>No playlists</h2>
       ) }
@@ -190,14 +211,14 @@ function App() {
       
       </form>
       {resultState.length ? (
-        <MusicCard>
+        <List>
           {resultState.map(results => (
-            <Song key={results._id}>
+            <ListItem key={results._id}>
               <p> {results.name} </p>
               <SubmitBtn>Add to Playlist</SubmitBtn>
-            </Song>
+            </ListItem>
           ))}
-        </MusicCard>
+        </List>
       ) : (" ")}
       
     </div>

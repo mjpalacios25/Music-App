@@ -15,10 +15,10 @@ module.exports = {
             .catch(err => res.status(422).json(err))
     },
     create: function (req, res) {
-        const targetID = req.params.id
+        console.log(req)
         db.Playlist
             .create(req.body)
-            .then(({ _id }) => db.User.findByIdAndUpdate(targetID, { $push: { playlists: _id } }, { new: true }))
+            .then(({ _id }) => db.User.findByIdAndUpdate(req.params.id, { $push: { playlists: _id } }, { new: true }))
             .then(dbPlaylist => res.json(dbPlaylist))
             .catch(err => res.status(422).json(err))
     },
@@ -29,6 +29,7 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     remove: function (req, res) {
+        console.log(req)
         db.Playlist
             .findById({ _id: req.params.id })
             .then(dbModel => dbModel.remove())

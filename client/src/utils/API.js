@@ -13,8 +13,12 @@ export default {
         return axios.get("/api/users/playlists/" + id)
     },
 
-    createPlaylist: function(id, {playlist}){
-        return axios.post("/api/users/" + id, {playlist})
+    createPlaylist: function(id, playlist){
+        return axios.post("/api/users/" + id, playlist)
+    },
+
+    removePlaylist: function(id){
+        return axios.delete("/api/users/" + id)
     }
 
 }
