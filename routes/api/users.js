@@ -9,8 +9,6 @@ router.route("/")
 
 router.route("/:id")
     .get(usersController.findbyID)
-    // .delete(usersController.remove)
-    // .put(usersController.update)
     .post(playlistController.create)
     .delete(playlistController.remove)
     

@@ -21,6 +21,7 @@ function App() {
   }, []);
 
   function loadusers() {
+    
     const id = "5ea8c3eebb48ce2f46ef9806";
     API.getSingleUser(id)
       .then(res => {
@@ -93,7 +94,7 @@ function App() {
 
   function handlePlaylistChange(event) {
     const { name, value } = event.target;
-    //setPlaylist({...playlistState, name: value});
+    setPlaylist({...playlistState, name: value});
     console.log(name, value)
   };
 
@@ -180,11 +181,16 @@ function App() {
       />
       <SubmitBtn onClick={ (event) => createPlaylist(event)} > Create Playlist </SubmitBtn>
       </form>
-      {userState.playlists ? (
+      {userState.playlists  ? (
         <List>
           {userState.playlists.map(user => (
             <ListItem key={user._id}>
               <p>{user.name}</p>
+              {user.songs.length ? ( 
+              <ul> {user.songs.map(songs => (
+                <li> {songs.name} </li>
+              ))} </ul> ) : 
+              (" ") }
               <SubmitBtn onClick={ (event) => deletePlaylist(event, user._id)}>Delete Playlist</SubmitBtn>
             </ListItem>
           ))}
