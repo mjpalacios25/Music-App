@@ -1,13 +1,23 @@
 import React, { Component } from "react";
 import WaveSurfer from "wavesurfer.js";
+import Playlists from "../UserPlaylists" 
 
 import { WaveformContainer, Wave, PlayButton } from "./style.js";
 
 class Waveform extends Component {
+    constructor(props) {
+        super(props);
+        
+        console.log(props._id)
+        this.state = {
+            
+            _id: props._id,
+            playing: false
 
-    state = {
-        playing: false,
-    };
+
+        };
+    }
+    
 
     componentDidMount() {
         const track = document.querySelector("#track");
@@ -38,6 +48,7 @@ class Waveform extends Component {
         
                  Smack That
                 </a>
+                {/* <Playlists _id={this.state._id}></Playlists> */}
             </WaveformContainer>
         );
     }

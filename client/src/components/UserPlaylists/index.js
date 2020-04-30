@@ -4,12 +4,12 @@ import {Input, SubmitBtn} from "../Form"
 import API from "../../utils/API";
 
 
-function Playlists() {
+function Playlists(props) {
   const [userState, setUser] = useState({});
   const [playlistState, setPlaylist] = useState({});
 
   useEffect(() => {
-    loadusers();
+    loadusers(props._id);
     
   }, []);
 
