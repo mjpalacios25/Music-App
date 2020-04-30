@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import {List, ListItem} from './components/List';
-import {Input, SubmitBtn, SelectDrop, SelectItem} from "./components/Form"
+import {List, ListItem} from '../List';
+import {Input, SubmitBtn} from "../Form"
 import API from "../../utils/API";
 
-
-var request = require('request'); // "Request" library
 
 function Playlists() {
   const [userState, setUser] = useState({});

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import {Nav} from './components/NavBar';
-import {List, ListItem} from './components/List';
-import {Input, SubmitBtn, SelectDrop, SelectItem} from "./components/Form"
-import API from "./utils/API";
+import {List, ListItem} from '../List';
+import {Input, SubmitBtn, SelectDrop, SelectItem} from "../Form"
+import API from "../../utils/API";
 
 var request = require('request'); // "Request" library
 
