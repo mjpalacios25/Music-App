@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { Component } from 'react';
+
+
 
 // import Waveform from "../components/Wavesurfer"
-class Profile {
+class Profile extends Component {
 
 
     render() {
@@ -14,7 +16,7 @@ class Profile {
 </form>
            
             
-
+ 
   
             </div>
         )

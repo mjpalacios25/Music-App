@@ -27,7 +27,19 @@ function Search() {
       })
       .catch(err => console.log(err))
   };
-  
+  //adds songs to selected playlist
+  function addToPlaylist(event,results){
+    event.preventDefault();
+    console.log({results}, event.target.value);
+    
+    const {id, name, artists:[ {name: artistname} ]} = results;
+
+    const song = {
+      songID: id,
+      name: name,
+      artist: artistname
+    };
+
 //as you type into the text box, this updates the artistState
   function handleInputChange(event) {
     const { name, value } = event.target;
