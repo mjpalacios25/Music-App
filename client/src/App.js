@@ -61,6 +61,7 @@ class App extends Component {
           <div id='logreg'>
           <li> <NavLink to='/login' style={{ color: 'white'}}> Login </NavLink></li> <span id="slash"> / </span>
           <li><NavLink to='/register' style={{ color: 'white'}}> Register </NavLink></li>
+          <li><NavLink to='/profile' style={{ color: 'white'}}> Profile </NavLink></li>
           </div>
       </ul>
       <div className="content">
