@@ -28,7 +28,7 @@ class Profile extends Component {
 
         <div>
             <h1>Hello {this.state.username}</h1>
-        <Waveform />
+        <Waveform _id={this.state._id}/>
         
         </div>
        )}}
