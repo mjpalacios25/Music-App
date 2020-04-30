@@ -1,25 +1,24 @@
-import React from 'react'
+import React, {Component} from 'react'
 
-// import Waveform from "../components/Wavesurfer"
-class Profile {
+import Waveform from "../components/Wavesurfer"
+class Profile extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: props.updateUser.username
 
-
-    render() {
-        
-        return (
-            <div>
-            <h1>Welcome</h1>
-<form action="/logout" method="POST">
-    <button type="submit">Log Out</button>
-</form>
-           
-            
-
-  
-            </div>
-        )
-
+        };
     }
-}
 
-export default Profile
+    
+    render() {
+       return(
+
+        <div>
+            <h1>Hello {this.state.username}</h1>
+        <Waveform />
+        
+        </div>
+       )}
+}
+export default Profile;
