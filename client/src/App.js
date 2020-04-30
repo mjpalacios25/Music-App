@@ -1,12 +1,56 @@
 import React, {Component} from 'react';
+import axios from "axios";
 import {Route, NavLink, HashRouter} from 'react-router-dom';
-import Login from './components/Login';
-import Register from './components/Register';
-import Home from './components/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Home from './pages/Home';
+import Profile from "./pages/Profile";
+
 
 
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      loggedIn: false,
+      username: null
+    }
+
+    this.getUser = this.getUser.bind(this)
+    this.componentDidMount = this.componentDidMount.bind(this)
+    this.updateUser = this.updateUser.bind(this)
+  }
+
+  componentDidMount() {
+    this.getUser()
+  }
+
+  updateUser (userObject) {
+    this.setState(userObject)
+  }
+
+  getUser() {
+    axios.get('/api/users/').then(response => {
+      console.log('Get user response: ')
+      console.log(response.data)
+      if (response.data.user) {
+        console.log('Get User: There is a user saved in the server session: ')
+
+        this.setState({
+          loggedIn: true,
+          username: response.data.user.username
+        })
+      } else {
+        console.log('Get user: no user');
+        this.setState({
+          loggedIn: false,
+          username: null
+        })
+      }
+    })
+  } 
+
   render() {
   return (
     <HashRouter>
@@ -21,8 +65,17 @@ class App extends Component {
       </ul>
       <div className="content">
       <Route path='/' component={Home} />
-      <Route path='/login' component={Login} />
-      <Route path='/register' component={Register} />    
+      <Route path='/login'
+        render={() =>
+            <Login
+              updateUser={this.updateUser}
+            />} />
+      <Route path='/register' component={Register} />
+      <Route path='/profile'
+        render={() =>
+            <Profile
+              updateUser={this.updateUser}
+            />} />
       </div>
       
     </div>
