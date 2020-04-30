@@ -55,7 +55,7 @@ function Playlists() {
       })
   };
 
-
+// as you type into the text box, this updates the playlist state
   function handlePlaylistChange(event) {
     const { name, value } = event.target;
     setPlaylist({...playlistState, name: value});
