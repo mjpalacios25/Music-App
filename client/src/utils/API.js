@@ -4,12 +4,14 @@ export default {
     getUsers: function() {
         return axios.get("/api/users")
     },
-    registerUser: function() {
-        return axios.post("/api/users/")
+    registerUser: function(req) {
+        console.log(req);
+        return axios.post("/api/users/", req)
     },
-    loginUser: function () {
-        return axios.post("/api/users/login")
-    },
+
+    loginUser: function (req) {
+        console.log("API " + JSON.stringify(req))
+        return axios.post("/api/users/login", req)
 
     getSingleUser: function(id){
         return axios.get("/api/users/" + id) 
@@ -29,6 +31,7 @@ export default {
 
     updatePlaylist: function(id, song){
         return axios.put("/api/users/playlists/" + id, song)
+
     }
 
 }

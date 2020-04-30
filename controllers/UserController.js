@@ -1,58 +1,75 @@
-const db = require("../models");
+const User = require("../models/User");
 const passport = require("../passport")
+const express = require("express");
 
 
 module.exports = {
     findAll: function(req, res) {
-        db.User
+        User
             .find(req.query)
             .populate("playlists") //popuplates each user with playlist data
             .then(dbUser => res.json(dbUser))
             .catch(err => res.status(422).json(err))
     },
     findbyID: function(req, res){
-        db.User
+        User
             .findById(req.params.id)
             .populate("playlists") //populates a specific user with playlist data
             .then(dbUser => res.json(dbUser))
             .catch(err => res.status(422).json(err))
     },
     create: function(req, res){
-        db.User
-            .create(req.body)
-            .then(dbUser => res.json(dbUser))
-            .catch(err => res.status(422).json(err))
+        console.log("register user")
+        console.log("at controller " + JSON.stringify( req.body ));
+        const { username, password } = req.body;
+        //add validation
+        
+        User.findOne({ username: username }, (err, user, next) => {
+            if (err) {
+                console.log("User.js post error: ", err);
+            }
+            else if (user) {
+                res.json({
+                    error: "Sorry, already a user with that username"
+                })
+
+            }
+            else {
+                const newUser = new User({
+                username: username,
+                password: password
+            
+        });
+        newUser
+            .save((err, savedUser) => {
+                if (err) {
+                    return res.json(err)
+                }
+                else {
+                    res.json(savedUser)
+                    
+                }
+        })
+            }
+        })
+        
+            // .then(dbUser => res.json(dbUser))
+            // .catch(err => res.status(422).json(err))
     },
     update: function (req, res) {
-        db.User
+        User
             .findOneAndUpdate({ _id: req.params.id }, req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     remove: function (req, res) {
-        db.User
+        User
             .findById({ _id: req.params.id })
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
-    //validates to see if user name is available
-    validate: function (req, res, next) {
-        db.User
-            .findOne({ username: req.username }, (err, user) => {
-                if (err) {
-                    console.log("User.js post error: ", err);
-                }
-                else if (user) {
-                    res.json({
-                        error: "Sorry, already a user with that username"
-                    })
-                }
-                else {
-                    next();
-                }
-            })
-    },
+    
     //logs user out from session
     logout: function (req, res) {
         if (req,user) {
@@ -83,9 +100,9 @@ module.exports = {
             },
             passport.authenticate("local"),
             (req, res) => {
-                console.log("logged in", req.user);
+                console.log("logged in " + JSON.stringify( req.body));
                 var userInfo = {
-                    username: req.user.username
+                    username: req.username
             };
             res.send(userInfo);
         })
