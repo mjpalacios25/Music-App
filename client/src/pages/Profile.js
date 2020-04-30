@@ -1,3 +1,4 @@
+
 import React, {Component} from 'react'
 
 import Waveform from "../components/Wavesurfer"
@@ -7,12 +8,15 @@ class Profile extends Component {
         this.state = {
             username: props.updateUser.username
 
+
         };
     }
 
     
     render() {
+
        return(
+
 
         <div>
             <h1>Hello {this.state.username}</h1>
