@@ -3,15 +3,17 @@ const Schema = mongoose.Schema;
 
 
 const PlaylistSchema = new Schema({
-  playlistname: [{
-    name: String,
-    songs: Array
-  }],
-  favoriteplaylists: [{
-    name: String,
-    songs: Array
-  }],
-  favoritesongs: Array
+  
+    name: {
+      type: String, 
+      trim: true,
+      required: true,
+      unique: true
+    },
+    songs: {
+      type: Array
+    }
+  
 });
 
 const Playlist = mongoose.model("Playlist", PlaylistSchema);
