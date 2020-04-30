@@ -1,12 +1,16 @@
 
 import React, {Component} from 'react'
+import { Redirect } from 'react-router-dom'
 
 import Waveform from "../components/Wavesurfer"
 class Profile extends Component {
     constructor(props) {
         super(props);
+        console.log(props.username)
+        console.log(props._id)
         this.state = {
-            username: props.updateUser.username
+            username: props.username,
+            _id: props._id
 
 
         };
@@ -14,7 +18,11 @@ class Profile extends Component {
 
     
     render() {
-
+        if (!this.state.username) {
+            return <Redirect to={{ pathname: "/login" }} />
+        } else {
+        console.log(this.state.username)
+        
        return(
 
 
@@ -23,6 +31,6 @@ class Profile extends Component {
         <Waveform />
         
         </div>
-       )}
+       )}}
 }
 export default Profile;

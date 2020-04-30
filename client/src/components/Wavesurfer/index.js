@@ -34,7 +34,7 @@ class Waveform extends Component {
                 </PlayButton>
                 <Wave id="waveform" />
                 {/* <div>Playlist Here</div> */}
-                <a href="./assets/Smack_That.mp3"  id = "track" class="list-group-item">
+                <a href="./assets/Smack_That.mp3"  id = "track" className="list-group-item">
         
                  Smack That
                 </a>

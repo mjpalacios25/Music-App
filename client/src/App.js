@@ -14,7 +14,8 @@ class App extends Component {
     super()
     this.state = {
       loggedIn: false,
-      username: null
+      username: null,
+      _id: null
   
     }
 
@@ -38,7 +39,8 @@ class App extends Component {
 
         this.setState({
           loggedIn: true,
-          username: response.data.user.username
+          username: response.data.user.username,
+          _id: response.data.user._id
         })
       } else {
         console.log('Get user: no user');
@@ -74,7 +76,7 @@ class App extends Component {
       <Route path='/profile'
         render={() =>
             <Profile
-              updateUser={this.updateUser}
+              username={this.state.username} _id={this.state._id}
             />} />
       </div>
     </div>
