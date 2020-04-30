@@ -6,7 +6,7 @@ import API from "./utils/API";
 
 var request = require('request'); // "Request" library
 
-function App() {
+function Search() {
   const [userState, setUser] = useState({}); //a user's information is stored here
   const [searchState, setSearch] = useState(); // terms to search for are stored here
   const [resultState, setResults] = useState([]); //used for artist and album search results
@@ -174,4 +174,4 @@ function App() {
   );
 }
 
-export default App;
+export default Search;
