@@ -71,7 +71,10 @@ module.exports = {
     
     //logs user out from session
     logout: function (req, res) {
+        console.log("-------user logout-------")
+        console.log(req.user)
         if (req.user) {
+            
             req.logout()
             res.json({ msg: "logging out" })
         }

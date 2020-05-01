@@ -33,5 +33,9 @@ export default {
 
     updatePlaylist: function(id, song){
         return axios.put("/api/users/playlists/" + id, song)
+    },
+
+    logoutUser: function(){
+        return axios.post("/api/users/logout");
     }
 }
