@@ -20,11 +20,13 @@ h1 {
     margin-top:30px;
     border: $teal 3px solid;
     border-radius: 5px;
+    @include fadeIn;
 }
 
 .search-results{
     padding: 10px;
     margin-bottom: 10px;
+    @include fadeIn;
 }
 
 .list-group  {
