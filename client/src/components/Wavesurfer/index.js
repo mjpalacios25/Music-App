@@ -38,6 +38,7 @@ class Waveform extends Component {
 
     render() {
         return (
+            <div>
             <WaveformContainer>
                 <PlayButton onClick={this.handlePlay}>
                     {!this.state.playing ? "Play" : "Pause"}
@@ -50,6 +51,11 @@ class Waveform extends Component {
                 </a>
                 {/* <Playlists _id={this.state._id}></Playlists> */}
             </WaveformContainer>
+            <br />
+                <div class="text-center">
+                <iframe src="https://giphy.com/embed/ftdEPX8jF6SvC" width="240" height="135" frameBorder="0"></iframe>
+                </div>
+            </div>
         );
     }
 };

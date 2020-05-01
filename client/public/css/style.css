@@ -2,6 +2,11 @@ body {
   background-color: black;
 }
 
+hr {
+  width: 50%;
+  border-color: #0ef3ae;
+}
+
 .entryLabel {
   margin-bottom: 10px;
 }
@@ -33,7 +38,7 @@ ul {
 
 .userButton:hover {
   background-color: black;
-  border-color: teal;
+  border-color: white;
 }
 
 .register-div {
@@ -90,6 +95,10 @@ li {
   display: inline-block;
   font-family: "Nosifer", cursive;
   font-size: 25px;
+}
+
+iframe {
+  border: 4px solid #0ef3ae;
 }
 
 label {

@@ -78,7 +78,7 @@ class App extends Component {
       </ul>
       <div className="content">
         <div className="userNav">
-          <span><NavLink to='/search' style={{ color: 'white'}}> Search </NavLink></span> <br />
+          <span> <NavLink to='/search' style={{ color: 'white'}}> Search </NavLink></span> <br />
           <hr className="blink_me2"/>
           <span><NavLink to='/playlists' style={{ color: 'white'}}> Pl<i class="fas fa-headphones-alt blink_me hPhones"></i>ylists </NavLink></span>
         </div>
