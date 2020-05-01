@@ -37,12 +37,13 @@ function SearchSpotify(props) {
     event.preventDefault();
     console.log({results}, event.target.value);
     
-    const {id, name, artists:[ {name: artistname} ]} = results;
+    const {id, name, preview_url, artists:[ {name: artistname} ]} = results;
 
     const song = {
       songID: id,
       name: name,
-      artist: artistname
+      artist: artistname,
+      preview_url: preview_url
     };
 
     console.log(song)
