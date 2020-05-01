@@ -121,27 +121,25 @@ function Search(props) {
       label = "Search for Artists"
       onChange = {handleInputChange}
       name = "searchTerms"
-      
       />
+
       <SubmitBtn onClick={ (event) => loadartist(event, "artist")} > Submit </SubmitBtn>
 
       <Input 
       label = "Search for Albums"
       onChange = {handleInputChange}
       name = "searchTerms"
-      
       />
+
       <SubmitBtn onClick={(event) => loadartist(event, "album")} > Submit </SubmitBtn>
 
       <Input 
       label = "Search for Songs"
       onChange = {handleInputChange}
       name = "searchTerms"
-      
       />
-      <SubmitBtn onClick={(event) => loadartist(event, "track")} > Submit </SubmitBtn>
-      
 
+      <SubmitBtn onClick={(event) => loadartist(event, "track")} > Submit </SubmitBtn>
       {/* artists and alumbs have photos while many songs do not. That is why they are separated here 
       into two lists. These map over the results from Spotify. Displays nothing if there are results */}
       </form>
@@ -184,5 +182,6 @@ function Search(props) {
     </div>
   );
 }
+};
 
 export default Search;

@@ -2,7 +2,91 @@ body {
   background-color: black;
 }
 
-#slash {
+hr {
+  width: 50%;
+  border-color: #0ef3ae;
+}
+
+.entryLabel {
+  margin-bottom: 10px;
+}
+
+.hPhones {
+  color: #e992e9;
+  font-size: 50px;
+  display: block;
+}
+
+.navDivider {
+  color: #e992e9;
+  font-size: 20px;
+  display: block;
+  padding: 5px;
+}
+
+ul {
+  display: inline;
+}
+
+.userButton {
+  color: #0ef3ae;
+  font-family: "Nosifer", cursive;
+  background-color: #2b584b;
+  border-style: double;
+  border-color: #0ef3ae;
+}
+
+.userButton:hover {
+  background-color: black;
+  border-color: white;
+}
+
+.register-div {
+  border: 4px solid #0ef3ae;
+  padding: 25px;
+  margin-top: 20px;
+  webkit-animation: fadein 2s;
+  /* Safari, Chrome and Opera > 12.1 */
+  /* Firefox < 16 */
+  /* Internet Explorer */
+  /* Opera < 12.1 */
+  -webkit-animation: fadein 2s;
+          animation: fadein 2s;
+  /* Firefox < 16 */
+  /* Safari, Chrome and Opera > 12.1 */
+  /* Internet Explorer */
+  /* Opera < 12.1 */
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.userNav {
+  font-family: "Nosifer", cursive;
+  text-align: center;
+  border: 4px #0ef3ae solid;
+  font-size: 50px;
+  margin-top: 50px;
+  padding: 25px;
+  color: white;
+}
+
+.slash {
   color: white;
 }
 
@@ -10,7 +94,11 @@ li {
   list-style-type: none;
   display: inline-block;
   font-family: "Nosifer", cursive;
-  font-size: 30px;
+  font-size: 25px;
+}
+
+iframe {
+  border: 4px solid #0ef3ae;
 }
 
 label {
@@ -25,6 +113,34 @@ label {
 video {
   width: 100%;
   height: 500px;
+}
+
+.blink_me {
+  -webkit-animation: blinker 1s linear infinite;
+          animation: blinker 1s linear infinite;
+}
+
+@-webkit-keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.blink_me2 {
+  -webkit-animation: blinker 2s linear infinite;
+          animation: blinker 2s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }
 
 .home {
