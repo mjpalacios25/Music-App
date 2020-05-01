@@ -32,8 +32,8 @@ class Profile extends Component {
             <h1>Hello {this.state.username}</h1>
         {/* <Waveform _id={this.state._id}/> <br /> <br /> */}
         <p>words</p>
-        {/* <Playlists _id={this.state._id} /> */}
-        <SearchSpotify _id={this.state._id} />
+        <Playlists _id={this.state._id} />
+        {/* <SearchSpotify _id={this.state._id} /> */}
         
         </div>
        )}}

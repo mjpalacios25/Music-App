@@ -15,7 +15,7 @@ module.exports = {
             .catch(err => res.status(422).json(err))
     },
     create: function (req, res) {
-        console.log(req)
+        console.log(req.body)
         db.Playlist
             .create(req.body)
             .then(({ _id }) => db.User.findByIdAndUpdate(req.params.id, { $push: { playlists: _id } }, { new: true }))

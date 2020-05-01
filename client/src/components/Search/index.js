@@ -209,7 +209,7 @@ function SearchSpotify(props) {
                 <p> Song: {results.name} </p>
                 <p> Artist: {results.artists[0].name} </p>
                 {userState.playlists ? (
-                  <SelectDrop onChange={(event) => addToPlaylist(event, results)} >
+                  <SelectDrop defaulttext="Add to Playlist" onChange={(event) => addToPlaylist(event, results)} >
                     {userState.playlists.map(playlist => (
                       <SelectItem key={playlist._id} value={playlist._id} > {playlist.name} </SelectItem>
                     ))}
