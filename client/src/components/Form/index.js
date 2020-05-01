@@ -19,7 +19,7 @@ export function SubmitBtn(props) {
 export function SelectDrop(props){
     return (
         <select defaultValue="1" className="custom-select custom-select-lg mb-3" {...props}>
-            <option disabled value="1">Add to Playlist</option>
+            <option disabled value="1">{props.defaulttext}</option>
             {props.children}
         </select>
     )

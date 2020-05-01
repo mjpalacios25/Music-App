@@ -17,18 +17,18 @@ const UserSchema = new Schema({
     unique: false,
     required: true
   },
-  // profilepic: {
-  //   type: Buffer,
-  //   contentType: String
-  // },
-  // friends: Array 
-  // ,
-  // playlists: [
-  //   {
-  //     type: Schema.Types.ObjectId,
-  //     ref: "Playlist"
-  //   }
-  // ]
+  profilepic: {
+    type: Buffer,
+    contentType: String
+  },
+  friends: Array 
+  ,
+  playlists: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Playlist"
+    }
+  ]
 });
 
 // Define schema methods
