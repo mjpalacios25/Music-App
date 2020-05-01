@@ -66,10 +66,12 @@ class App extends Component {
     <div className="container">
     
       <ul>
-          <li> <NavLink to='/' id='home' style={{ color: 'white'}}>Home</NavLink></li> <span class="slash"> / </span>
+          <li> <NavLink to='/' id='home' style={{ color: 'white'}}>Home</NavLink></li> 
+          <i class="fas fa-asterisk navDivider"></i>
           <li><NavLink to='/profile' style={{ color: 'white'}}> Profile </NavLink></li>
           <div id='logreg'>
-          <li> <NavLink to='/login' style={{ color: 'white'}}> Login </NavLink></li> <span class="slash"> / </span>
+          <li> <NavLink to='/login' style={{ color: 'white'}}> Login </NavLink></li> 
+          <i class="fas fa-asterisk navDivider"></i>
           <li><NavLink to='/register' style={{ color: 'white'}}> Register </NavLink></li>
           
           </div>
@@ -78,7 +80,7 @@ class App extends Component {
         <div className="userNav">
           <span><NavLink to='/search' style={{ color: 'white'}}> Search </NavLink></span> <br />
           <hr className="blink_me2"/>
-          <span><NavLink to='/playlists' style={{ color: 'white'}}> Pl<i class="fas fa-headphones-alt blink_me"></i>ylists </NavLink></span>
+          <span><NavLink to='/playlists' style={{ color: 'white'}}> Pl<i class="fas fa-headphones-alt blink_me hPhones"></i>ylists </NavLink></span>
         </div>
      <Route path='/' component={Home} />
       <Route path='/login'
