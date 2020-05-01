@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import Profile from "./pages/Profile";
 import Search from './components/Search/index';
 import Playlists from './components/UserPlaylists/index';
-
+import axios from "axios"
 
 
 
@@ -35,7 +35,7 @@ class App extends Component {
   }
 
   getUser() {
-    /*axios.get('/api/users/').then(response => {
+    axios.get('/api/users/').then(response => {
       if (response.data.user) {
         console.log('Get User: There is a user saved in the server session: ')
 
@@ -48,16 +48,17 @@ class App extends Component {
         console.log('Get user: no user');
         this.setState({
           loggedIn: false,
-          username: null
+          username: null,
+          _id: null
         })
       }
-    })*/
-
-    this.setState({
-      loggedIn: true,
-      username: "mojeezy",
-      _id: "5ea8c3eebb48ce2f46ef9806"
     })
+
+    // this.setState({
+    //   loggedIn: true,
+    //   username: "mojeezy",
+    //   _id: "5ea8c3eebb48ce2f46ef9806"
+    // })
   } 
 
   render() {
