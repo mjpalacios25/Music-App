@@ -4,60 +4,53 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
 import Profile from "./pages/Profile";
-import Search from './components/Search/index';
+import SearchSpotify from "./components/Search";
 import Playlists from './components/UserPlaylists/index';
 import axios from "axios"
 
 
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      loggedIn: false,
-      username: null,
-      _id: null
+  // constructor() {
+  //   super()
+  //   this.state = {
+  //     loggedIn: false,
+  //     username: null,
+  //     _id: null
   
-    }
+  //   }
 
-    this.getUser = this.getUser.bind(this)
-    this.componentDidMount = this.componentDidMount.bind(this)
-    this.updateUser = this.updateUser.bind(this)
-  }
+  //   this.getUser = this.getUser.bind(this)
+  //   this.componentDidMount = this.componentDidMount.bind(this)
+  //   this.updateUser = this.updateUser.bind(this)
+  // }
 
 
-  componentDidMount() {
-    this.getUser()
-  }
+  // componentDidMount() {
+  //   this.getUser()
+  // }
 
-  updateUser (userObject) {
-    this.setState(userObject)
-  }
+  // updateUser (userObject) {
+  //   this.setState(userObject)
+  // }
 
   getUser() {
-    axios.get('/api/users/').then(response => {
-      if (response.data.user) {
-        console.log('Get User: There is a user saved in the server session: ')
+    // axios.get('/api/users/').then(response => {
+    //   // if (response.data.user) {
+    //     console.log('Get User: There is a user saved in the server session: ')
 
         this.setState({
           loggedIn: true,
-          username: response.data.user.username,
-          _id: response.data.user._id
+          username: "mojeezy",
+          _id: "5ea8c3eebb48ce2f46ef9806"
         })
-      } else {
-        console.log('Get user: no user');
-        this.setState({
-          loggedIn: false,
-          username: null,
-          _id: null
-        })
-      }
-    })
-
-    // this.setState({
-    //   loggedIn: true,
-    //   username: "mojeezy",
-    //   _id: "5ea8c3eebb48ce2f46ef9806"
+      // } else {
+      //   console.log('Get user: no user');
+      //   this.setState({
+      //     loggedIn: false,
+      //     username: null
+      //   })
+      // }
     // })
   } 
 
@@ -97,7 +90,7 @@ class App extends Component {
             />} />
       </div>
 
-      <Route path='/search' component={Search} />
+      <Route path='/search' component={SearchSpotify} />
       <Route path='/playlists' component={Playlists} />
 
     </div>

@@ -1,9 +1,14 @@
 import axios from "axios";
 
 export default {
-   /*} getUsers: function() {
+    getUsers: function() {
         return axios.get("/api/users")
-    }, */
+    },
+
+    getSingleUser: function(id){
+        return axios.get("/api/users/" + id) 
+    },
+
     registerUser: function(req) {
         console.log(req);
         return axios.post("/api/users/", req)
@@ -13,8 +18,20 @@ export default {
         console.log("API " + JSON.stringify(req))
         return axios.post("/api/users/login", req)
     },
+    
+    getPlaylists: function(id){
+        return axios.get("/api/users/playlists/" + id)
+    },
 
-    logoutUser: function (req) {
-        return axios.post("/api/users/logout")
+    createPlaylist: function(id, playlist){
+        return axios.post("/api/users/" + id, playlist)
+    },
+
+    removePlaylist: function(id){
+        return axios.delete("/api/users/" + id)
+    },
+
+    updatePlaylist: function(id, song){
+        return axios.put("/api/users/playlists/" + id, song)
     }
 }
