@@ -19,7 +19,7 @@ class Profile extends Component {
             _id: props._id,
             loggedIn: props.loggedIn,
             songLink: "https://p.scdn.co/mp3-preview/3eb16018c2a700240e9dfb8817b6f2d041f15eb1?cid=774b29d4f13844c495f206cafdad9c86",
-            songName: "Demo Song"
+            songName: ""
             
             
         };
