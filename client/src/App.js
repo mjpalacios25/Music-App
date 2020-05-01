@@ -76,7 +76,7 @@ class App extends Component {
       <Route path='/profile'
         render={() =>
             <Profile
-              username={this.state.username} _id={this.state._id}
+              username={this.state.username} _id={this.state._id} updateUser={this.updateUser}
             />} />
       </div>
     </div>
