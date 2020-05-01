@@ -16,10 +16,11 @@ function Playlists(props) {
     
   }, []);
 //On click of an element in the song list will make the songLink update on the profile page which in turn will be passed to the wavesurfer component
-  // function handleSong(event, songLink) {
+  // function handleSong(event, songLink, songName) {
   //   event.preventDefault()
   //   this.props.updateSong({
-  //     songLink: songLink
+  //     songLink: songLink,
+  //     songName: songName
   //   })
   // }
 
