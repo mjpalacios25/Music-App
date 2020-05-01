@@ -33,23 +33,23 @@ class App extends Component {
   }
 
   getUser() {
-    axios.get('/api/users/').then(response => {
-      if (response.data.user) {
-        console.log('Get User: There is a user saved in the server session: ')
+    // axios.get('/api/users/').then(response => {
+    //   // if (response.data.user) {
+    //     console.log('Get User: There is a user saved in the server session: ')
 
         this.setState({
           loggedIn: true,
-          username: response.data.user.username,
-          _id: response.data.user._id
+          username: "mojeezy",
+          _id: "5ea8c3eebb48ce2f46ef9806"
         })
-      } else {
-        console.log('Get user: no user');
-        this.setState({
-          loggedIn: false,
-          username: null
-        })
-      }
-    })
+      // } else {
+      //   console.log('Get user: no user');
+      //   this.setState({
+      //     loggedIn: false,
+      //     username: null
+      //   })
+      // }
+    // })
   } 
 
   render() {
