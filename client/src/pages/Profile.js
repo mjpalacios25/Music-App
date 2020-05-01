@@ -1,39 +1,79 @@
 
 import React, {Component} from 'react'
-import { Redirect } from 'react-router-dom'
-import LogoutButton from "../components/LogoutButton"
+import { Redirect,Link } from 'react-router-dom'
+
 import Waveform from "../components/Wavesurfer"
+import API from "../utils/API"
+
 
 class Profile extends Component {
     constructor(props) {
-        super(props);
-        console.log(props.username)
-        console.log(props._id)
+        super(props)
+       
         this.state = {
-            username: props.username,
+            
             _id: props._id,
-            updateUser:props.updateUser
-
+            loggedIn: props.loggedIn
+            
+            
         };
-        
+        this.logout = this.logout.bind(this)
     }
+    
+    logout(event) {
+        event.preventDefault()
+        
+        API.logoutUser().then(response => {
+          console.log("RESPONSE DATA" + JSON.stringify( response.data.msg))
+          if (response.data.msg = "logging out") {
+            this.props.updateUser({
+                loggedIn:false
+            })
+            this.setState({
+                loggedIn:false
+            })
+            
+            
+
+            }
+            
+            
+          }
+        )
+        
+        .catch(error => {
+            console.log('Logout error:' +error) 
+            
+        })
+        
+      }
 
     
     render() {
-        if (!this.state.username) {
-            return <Redirect to={{ pathname: "/login" }} />
-        } else {
-        console.log(this.state.username)
+        
+        
+        // else if(this.state.loggedOut) {
+        //     return <Redirect to={{ pathname: "/" }} />
+        // }
+        if (this.state.loggedIn){
+        console.log(this.state.loggedIn)
         
        return(
 
 
         <div>
             <h1>Hello {this.state.username}</h1>
-            <LogoutButton updateUser={this.state.updateUser}/>
+            <button type="submit" className="btn btn-primary userButton" onClick={this.logout}>Logout</button>
+        
+
         <Waveform _id={this.state._id}/>
         
         </div>
-       )}}
-}
+       )}
+       else{
+        
+            return <Redirect to={{ pathname: "/login" }} />
+        
+       }}
+       }
 export default Profile;
