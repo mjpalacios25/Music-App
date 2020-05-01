@@ -89,9 +89,17 @@ class App extends Component {
               username={this.state.username} _id={this.state._id} updateUser={this.updateUser} loggedIn={this.state.loggedIn}
             />} />
       </div>
-      <Route path='/search' component={SearchSpotify} />
-      <Route path='/playlists' component={Playlists} />
-
+      <Route path='/search'
+        render={() =>
+            <SearchSpotify
+              _id={this.state._id}
+            />} />
+      {/* <Route path='/search' component={SearchSpotify} /> */}
+      <Route path='/playlists'
+        render={() =>
+            <Playlists
+              _id={this.state._id}
+            />} />
     </div>
     </HashRouter>
   );
