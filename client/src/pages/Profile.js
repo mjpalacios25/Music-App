@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 
 import Waveform from "../components/Wavesurfer";
 import Playlists from '../components/UserPlaylists'
-//import SearchSpotify from '../components/Search'
+import SearchSpotify from '../components/Search'
 class Profile extends Component {
     constructor(props) {
         super(props);
@@ -33,8 +33,8 @@ class Profile extends Component {
             <h1>Hello {this.state.username}</h1>
         {/* <Waveform _id={this.state._id}/> <br /> <br /> */}
         <p>words</p>
-        <Playlists _id={this.state._id} />
-        {/* <SearchSpotify _id={this.state._id} /> */}
+        {/* <Playlists _id={this.state._id} /> */}
+        <SearchSpotify _id={this.state._id} />
         
         </div>
        )}}
