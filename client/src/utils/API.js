@@ -1,9 +1,9 @@
 import axios from "axios";
 
 export default {
-    getUsers: function() {
+   /*} getUsers: function() {
         return axios.get("/api/users")
-    },
+    }, */
     registerUser: function(req) {
         console.log(req);
         return axios.post("/api/users/", req)

@@ -20,8 +20,10 @@ export const PlayButton = styled.button`
   align-items: center;
   width: 60px;
   height: 60px;
-  background: #EFEFEF;
-  border-radius: 50%;
+  background: rgb(14, 243, 174);
+  color:black;
+  font-family: 'Nosifer', cursive;
+  border-radius: 5%;
   border: none;
   outline: none;
   cursor: pointer;

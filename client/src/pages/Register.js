@@ -7,7 +7,7 @@ class Register extends Component {
 		this.state = {
 			username: '',
 			password: '',
-            confirmPassword: '',
+           // confirmPassword: '',
            
 
 		}
@@ -20,7 +20,7 @@ class Register extends Component {
 		})
 	}
 	handleSubmit(event) {
-		console.log('sign-up handleSubmit, username: ')
+		console.log('sign-up handleSubmit, username: ' )
 		console.log(this.state.username)
 		event.preventDefault()
 
@@ -58,11 +58,6 @@ class Register extends Component {
                 <label htmlFor="exampleInputPassword1">Password</label>
                 <input type="password" className="form-control" id="password" placeholder="Password" name="password" value={this.state.password} onChange={this.handleChange}/>
             </div>
-            {/* <div className="form-group">
-                <label htmlFor="exampleFormControlFile1">Profile Picture</label>
-                <input type="file" className="form-control-file" id="exampleFormControlFile1" />
-            </div> */}
-
                     <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Sign up</button>
         </form>
     </div>

@@ -24,8 +24,8 @@ class Waveform extends Component {
 
         this.waveform = WaveSurfer.create({
             container: '#waveform',
-            waveColor: 'violet',
-            progressColor: 'purple'
+            waveColor: 'rgb(14, 243, 174)',
+            progressColor: 'rgb(43, 88, 75)'
         });
 
         this.waveform.load(track.href);
