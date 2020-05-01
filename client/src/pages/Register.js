@@ -10,7 +10,8 @@ class Register extends Component {
 			username: null,
             password: '',
             redirectTo: "/register",
-            approved: false
+            approved: false,
+            taken: null
            // confirmPassword: '',
            
 
@@ -41,14 +42,20 @@ class Register extends Component {
                         approved: true
                     })
 				} else {
-					console.log('username already taken')
+                    console.log('username already taken')
+                    this.setState({
+                        taken: true
+                    })
 				}
 			}).catch(error => {
 				console.log('signup error: ')
 				console.log(error)
 
-			})
+            })
+            
     }
+
+    
     
     render() {
         if (this.state.approved) {
@@ -58,6 +65,7 @@ class Register extends Component {
 	<div className="register-div">
 	 <form >
          <h1>Register</h1>
+         {this.state.taken && <p>Username already taken</p>}
             <div className="form-group">
 			<label htmlFor="exampleInputEmail1" className="entryLabel">Username</label>
                 <input type="text" className="form-control" aria-describedby="enterUsername" placeholder="Enter username" id="username" name="username" value={this.state.username} onChange={this.handleChange}/>
