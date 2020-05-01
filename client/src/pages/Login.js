@@ -9,7 +9,8 @@ class Login extends Component {
             username: '',
             password: '',
             _id: "",
-            redirectTo: null
+            redirectTo: null,
+            invalid: null
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -41,12 +42,16 @@ class Login extends Component {
                     })
                     // update the state to redirect to profile
                     this.setState({
+                        invalid: false,
                         redirectTo: '/profile'
                     })
                 }
             }).catch(error => {
                 console.log('login error: ')
                 console.log(error);
+                this.setState({
+                    invalid: true
+                })
                 
             })
     }
@@ -56,18 +61,20 @@ class Login extends Component {
         } else {
         return (
         
-            <div>
+            <div className="register-div">
             <form>
+            <h1>Login</h1>
+            {this.state.invalid && <p>Username or password incorrect</p>}
             <div className="form-group">
-                <label htmlFor="exampleInputEmail1">Username</label>
+                <label htmlFor="exampleInputEmail1" className="entryLabel">Username</label>
                 <input type="text" className="form-control" aria-describedby="enterUsername" placeholder="Enter username" id="username" name="username" value={this.state.username} onChange={this.handleChange}/>
             </div>
             <div className="form-group">
-                <label htmlFor="exampleInputPassword1">Password</label>
+                <label htmlFor="exampleInputPassword1" className="entryLabel">Password</label>
                 <input type="password" className="form-control" id="password" placeholder="Password" name="password" value={this.state.password} onChange={this.handleChange}/>
             </div>
 
-                    <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Login</button>
+                    <button type="submit" className="btn btn-primary userButton" onClick={this.handleSubmit}>Login</button>
             </form>
             </div>
         )

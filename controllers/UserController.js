@@ -2,7 +2,6 @@ const User = require("../models/User");
 const passport = require("../passport")
 const express = require("express");
 
-
 module.exports = {
     findAll: function(req, res) {
         User
@@ -72,13 +71,14 @@ module.exports = {
     
     //logs user out from session
     logout: function (req, res) {
-        if (req,user) {
+        if (req.user) {
             req.logout()
             res.json({ msg: "logging out" })
         }
         else {
             res.json({ msg: "no user to log out" })
         }
+        
     },
     //if user is logged in, grants access to restricted pages
     loggedIn: function (req, res) {

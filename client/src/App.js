@@ -1,36 +1,38 @@
 import React, {Component} from 'react';
-import axios from "axios";
 import {Route, NavLink, HashRouter} from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
 import Profile from "./pages/Profile";
-
+import SearchSpotify from "./components/Search";
+import Playlists from './components/UserPlaylists/index';
+import axios from "axios"
 
 
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      loggedIn: false,
-      username: null,
-      _id: null
+  // constructor() {
+  //   super()
+  //   this.state = {
+  //     loggedIn: false,
+  //     username: null,
+  //     _id: null
   
-    }
+  //   }
 
-    this.getUser = this.getUser.bind(this)
-    this.componentDidMount = this.componentDidMount.bind(this)
-    this.updateUser = this.updateUser.bind(this)
-  }
+  //   this.getUser = this.getUser.bind(this)
+  //   this.componentDidMount = this.componentDidMount.bind(this)
+  //   this.updateUser = this.updateUser.bind(this)
+  // }
 
-  componentDidMount() {
-    this.getUser()
-  }
 
-  updateUser (userObject) {
-    this.setState(userObject)
-  }
+  // componentDidMount() {
+  //   this.getUser()
+  // }
+
+  // updateUser (userObject) {
+  //   this.setState(userObject)
+  // }
 
   getUser() {
     // axios.get('/api/users/').then(response => {
@@ -58,15 +60,23 @@ class App extends Component {
     <div className="container">
     
       <ul>
-          <li> <NavLink to='/' id='home' style={{ color: 'white'}}>Home</NavLink></li>
-          <div id='logreg'>
-          <li> <NavLink to='/login' style={{ color: 'white'}}> Login </NavLink></li> <span id="slash"> / </span>
-          <li><NavLink to='/register' style={{ color: 'white'}}> Register </NavLink></li>
+          <li> <NavLink to='/' id='home' style={{ color: 'white'}}>Home</NavLink></li> 
+          <i class="fas fa-asterisk navDivider"></i>
           <li><NavLink to='/profile' style={{ color: 'white'}}> Profile </NavLink></li>
+          <div id='logreg'>
+          <li> <NavLink to='/login' style={{ color: 'white'}}> Login </NavLink></li> 
+          <i class="fas fa-asterisk navDivider"></i>
+          <li><NavLink to='/register' style={{ color: 'white'}}> Register </NavLink></li>
+          
           </div>
       </ul>
       <div className="content">
-      <Route path='/' component={Home} />
+        <div className="userNav">
+          <span> <NavLink to='/search' style={{ color: 'white'}}> Search </NavLink></span> <br />
+          <hr className="blink_me2"/>
+          <span><NavLink to='/playlists' style={{ color: 'white'}}> Pl<i class="fas fa-headphones-alt blink_me hPhones"></i>ylists </NavLink></span>
+        </div>
+     <Route path='/' component={Home} />
       <Route path='/login'
         render={() =>
             <Login
@@ -76,9 +86,13 @@ class App extends Component {
       <Route path='/profile'
         render={() =>
             <Profile
-              username={this.state.username} _id={this.state._id}
+              username={this.state.username} _id={this.state._id} updateUser={this.updateUser}
             />} />
       </div>
+
+      <Route path='/search' component={SearchSpotify} />
+      <Route path='/playlists' component={Playlists} />
+
     </div>
     </HashRouter>
   );

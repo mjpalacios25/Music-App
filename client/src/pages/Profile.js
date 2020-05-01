@@ -4,18 +4,19 @@ import { Redirect } from 'react-router-dom'
 
 import Waveform from "../components/Wavesurfer";
 import Playlists from '../components/UserPlaylists'
-import SearchSpotify from '../components/Search'
+//import SearchSpotify from '../components/Search'
 class Profile extends Component {
     constructor(props) {
         super(props);
         // console.log(props.username)
         // console.log(props._id)
         this.state = {
-            username: "mojeezy",
-            _id: "5eab95da741ec3425716b232"
-
+            username: props.username,
+            _id: props._id,
+            updateUser:props.updateUser
 
         };
+        
     }
 
     

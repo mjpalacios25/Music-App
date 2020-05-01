@@ -1,13 +1,18 @@
 import React, {Component} from 'react';
 import API from "../utils/API";
+import {Redirect} from "react-router-dom"
+import { set } from 'mongoose';
 
 class Register extends Component {
     constructor() {
 		super()
 		this.state = {
-			username: '',
-			password: '',
-            confirmPassword: '',
+			username: null,
+            password: '',
+            redirectTo: "/register",
+            approved: false,
+            taken: null
+           // confirmPassword: '',
            
 
 		}
@@ -20,7 +25,7 @@ class Register extends Component {
 		})
 	}
 	handleSubmit(event) {
-		console.log('sign-up handleSubmit, username: ')
+		console.log('sign-up handleSubmit, username: ' )
 		console.log(this.state.username)
 		event.preventDefault()
 
@@ -31,43 +36,49 @@ class Register extends Component {
 		})
 			.then(response => {
 				console.log(response)
-				if (!response.data.errmsg) {
+				if (!response.data.error) {
 					console.log('successful signup')
-					this.setState({ //redirect to login page
-						redirectTo: '/login'
-					})
+                    this.setState({
+                        approved: true
+                    })
 				} else {
-					console.log('username already taken')
+                    console.log('username already taken')
+                    this.setState({
+                        taken: true
+                    })
 				}
 			}).catch(error => {
 				console.log('signup error: ')
 				console.log(error)
 
-			})
+            })
+            
     }
+
+    
     
     render() {
+        if (this.state.approved) {
+            return <Redirect to={{ pathname: "/login"  }} />
+        } else {
         return (
-    <div className="register-div">
-     <form >
+	<div className="register-div">
+	 <form >
+         <h1>Register</h1>
+         {this.state.taken && <p>Username already taken</p>}
             <div className="form-group">
-                <label htmlFor="exampleInputEmail1">Username</label>
+			<label htmlFor="exampleInputEmail1" className="entryLabel">Username</label>
                 <input type="text" className="form-control" aria-describedby="enterUsername" placeholder="Enter username" id="username" name="username" value={this.state.username} onChange={this.handleChange}/>
             </div>
             <div className="form-group">
-                <label htmlFor="exampleInputPassword1">Password</label>
+            <label htmlFor="exampleInputPassword1" className="entryLabel">Password</label>
                 <input type="password" className="form-control" id="password" placeholder="Password" name="password" value={this.state.password} onChange={this.handleChange}/>
             </div>
-            {/* <div className="form-group">
-                <label htmlFor="exampleFormControlFile1">Profile Picture</label>
-                <input type="file" className="form-control-file" id="exampleFormControlFile1" />
-            </div> */}
-
-                    <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Sign up</button>
+                    <button type="submit" className="btn btn-primary userButton" onClick={this.handleSubmit}>Sign up</button>
         </form>
     </div>
         )
-    }
+    }}
 }
 
 export default Register;
