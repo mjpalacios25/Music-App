@@ -4,7 +4,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
 import Profile from "./pages/Profile";
-import Search from './components/Search/index';
+import SearchSpotify from "./components/Search";
 import Playlists from './components/UserPlaylists/index';
 import axios from "axios"
 
@@ -39,26 +39,19 @@ class App extends Component {
       if (response.data.user) {
         console.log('Get User: There is a user saved in the server session: ')
 
-        this.setState({
-          loggedIn: true,
-          username: response.data.user.username,
-          _id: response.data.user._id
-        })
+        // this.setState({
+        //   loggedIn: true,
+        //   username: "mojeezy",
+        //   _id: "5ea8c3eebb48ce2f46ef9806"
+        // })
       } else {
         console.log('Get user: no user');
         this.setState({
           loggedIn: false,
-          username: null,
-          _id: null
+          username: null
         })
       }
     })
-
-    // this.setState({
-    //   loggedIn: true,
-    //   username: "mojeezy",
-    //   _id: "5ea8c3eebb48ce2f46ef9806"
-    // })
   } 
 
   render() {
@@ -97,7 +90,7 @@ class App extends Component {
             />} />
       </div>
 
-      <Route path='/search' component={Search} />
+      <Route path='/search' component={SearchSpotify} />
       <Route path='/playlists' component={Playlists} />
 
     </div>

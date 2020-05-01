@@ -2,16 +2,20 @@
 import React, {Component} from 'react'
 import { Redirect,Link } from 'react-router-dom'
 
-import Waveform from "../components/Wavesurfer"
+
 import API from "../utils/API"
 
 
+import Waveform from "../components/Wavesurfer";
+import Playlists from '../components/UserPlaylists'
+//import SearchSpotify from '../components/Search'
 class Profile extends Component {
     constructor(props) {
-        super(props)
-       
+        super(props);
+        // console.log(props.username)
+        // console.log(props._id)
         this.state = {
-            
+            username: props.username,
             _id: props._id,
             loggedIn: props.loggedIn
             
@@ -67,6 +71,10 @@ class Profile extends Component {
         
 
         <Waveform _id={this.state._id}/>
+        {/* <Waveform _id={this.state._id}/> <br /> <br /> */}
+        
+        <Playlists _id={this.state._id} />
+        {/* <SearchSpotify _id={this.state._id} /> */}
         
         </div>
        )}

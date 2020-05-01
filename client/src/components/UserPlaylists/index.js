@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import {List, ListItem} from '../List';
-import {Input, SubmitBtn} from "../Form"
+import {Input, SubmitBtn, SelectDrop, SelectItem} from "../Form"
 import API from "../../utils/API";
 
 
 function Playlists(props) {
   const [userState, setUser] = useState({});
   const [playlistState, setPlaylist] = useState({});
+  const [songState, setSong] = useState([]);
   const updateUser = props._id
 
   useEffect(() => {
@@ -36,7 +37,7 @@ function Playlists(props) {
       .then( res => {
         console.log(res.data);
         setUser(res.data);
-        loadusers();
+        loadusers(props._id);
 
       })
   };
@@ -52,6 +53,16 @@ function Playlists(props) {
         loadusers();
 
       })
+  };
+
+  function seeSongs(event){
+    event.preventDefault()
+    console.log(event.target.value);
+    const id = event.target.value;
+    const targetPlaylist = userState.playlists.filter(songs => songs._id === id);
+    console.log(targetPlaylist)
+    setSong(targetPlaylist)
+    
   };
 
 // as you type into the text box, this updates the playlist state
@@ -76,23 +87,44 @@ function Playlists(props) {
 
         {/* looks at the users info, then maps over each playlist to list the playlist name and songs.
         there's also a delete button for deleting a playlist */}
-      {userState.playlists  ? (
-        <List>
-          {userState.playlists.map(user => (
-            <ListItem key={user._id}>
-              <p>{user.name}</p>
-              {user.songs ? ( 
-              <ul> {user.songs.map(songs => (
-                <li> {songs.name} </li>
-              ))} </ul> ) : 
-              (" ") }
-              <SubmitBtn onClick={ (event) => deletePlaylist(event, user._id)}>Delete Playlist</SubmitBtn>
-            </ListItem>
-          ))}
-        </List>
-      ) : (
-        <h2>No playlists</h2>
-      ) }
+        <div className="row">
+          <div className="col-md-5 mx-auto ">
+        {userState.playlists ? (
+          <SelectDrop defaulttext="Select Playlist" onChange={(event) => seeSongs(event)}>
+            {userState.playlists.map(playlist => (
+              <SelectItem key={playlist._id} value={playlist._id} >
+                {playlist.name}
+              </SelectItem>
+            ))}
+          </SelectDrop>
+        ) : (
+            <h2>No playlists</h2>
+          )}
+        </div>
+        </div>
+        
+{/* <SubmitBtn onClick={(event) => deletePlaylist(event, user._id)}>Delete Playlist</SubmitBtn> */}
+        <div className="row">
+          <div className="col-md-6 mx-auto ">
+          {songState ? (
+          <List>
+            {songState.map(user => (
+              <ListItem key={user._id}>
+                {user.songs ? (
+                  <ul> {user.songs.map(songs => (
+                    <li> {songs.name} </li>
+                  ))} </ul>) :
+                  (" ")}
+              </ListItem>
+            ))}
+          </List>
+        ) : (
+            <h2>No playlists</h2>
+          )}
+          </div>
+
+        </div>
+     
       
     </div>
   );
