@@ -16,6 +16,7 @@ class App extends Component {
       loggedIn: false,
       username: null,
       _id: null
+  
     }
 
     this.getUser = this.getUser.bind(this)
@@ -33,8 +34,6 @@ class App extends Component {
 
   getUser() {
     axios.get('/api/users/').then(response => {
-      console.log('Get user response: ')
-      console.log(response.data)
       if (response.data.user) {
         console.log('Get User: There is a user saved in the server session: ')
 
@@ -42,7 +41,6 @@ class App extends Component {
           loggedIn: true,
           username: response.data.user.username,
           _id: response.data.user._id
-
         })
       } else {
         console.log('Get user: no user');
@@ -78,7 +76,7 @@ class App extends Component {
       <Route path='/profile'
         render={() =>
             <Profile
-              updateUser={this.updateUser}
+              username={this.state.username} _id={this.state._id}
             />} />
       </div>
     </div>

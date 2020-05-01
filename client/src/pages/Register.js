@@ -51,7 +51,7 @@ class Register extends Component {
     <div className="register-div">
      <form >
             <div className="form-group">
-                <label htmlfor="exampleInputEmail1">Username</label>
+                <label htmlFor="exampleInputEmail1">Username</label>
                 <input type="text" className="form-control" aria-describedby="enterUsername" placeholder="Enter username" id="username" name="username" value={this.state.username} onChange={this.handleChange}/>
             </div>
             <div className="form-group">

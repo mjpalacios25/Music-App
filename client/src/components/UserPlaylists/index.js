@@ -10,8 +10,7 @@ function Playlists(props) {
   const updateUser = props._id
 
   useEffect(() => {
-    loadusers(updateUser);
-    
+    loadusers(props._id);
     
   }, []);
 

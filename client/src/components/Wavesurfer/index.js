@@ -1,9 +1,24 @@
 import React, { Component } from "react";
 import WaveSurfer from "wavesurfer.js";
+import Playlists from "../UserPlaylists" 
 
-import { WaveformContainer, Wave, PlayButton } from "./style";
+import { WaveformContainer, Wave, PlayButton } from "./style.js";
 
 class Waveform extends Component {
+    constructor(props) {
+        super(props);
+        
+        console.log(props._id)
+        this.state = {
+            
+            _id: props._id,
+            playing: false
+
+
+        };
+    }
+    
+
     componentDidMount() {
         const track = document.querySelector("#track");
 
@@ -13,7 +28,7 @@ class Waveform extends Component {
             progressColor: 'purple'
         });
 
-        this.waveform.load(track);
+        this.waveform.load(track.href);
     };
 
     handlePlay = () => {
@@ -28,7 +43,12 @@ class Waveform extends Component {
                     {!this.state.playing ? "Play" : "Pause"}
                 </PlayButton>
                 <Wave id="waveform" />
-                {/* <audio id="track" src={url}/> */}
+                {/* <div>Playlist Here</div> */}
+                <a href="./assets/Smack_That.mp3"  id = "track" className="list-group-item">
+        
+                 Smack That
+                </a>
+                {/* <Playlists _id={this.state._id}></Playlists> */}
             </WaveformContainer>
         );
     }
