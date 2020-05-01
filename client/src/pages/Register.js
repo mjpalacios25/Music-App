@@ -74,7 +74,7 @@ class Register extends Component {
             <label htmlFor="exampleInputPassword1" className="entryLabel">Password</label>
                 <input type="password" className="form-control" id="password" placeholder="Password" name="password" value={this.state.password} onChange={this.handleChange}/>
             </div>
-                    <button type="submit" className="btn btn-primary userButton" onClick={this.handleSubmit}>Sign up</button>
+                    <button type="submit" className="btn userButton" onClick={this.handleSubmit}>Sign up</button>
         </form>
     </div>
         )
