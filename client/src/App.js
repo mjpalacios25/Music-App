@@ -4,7 +4,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
 import Profile from "./pages/Profile";
-import Search from './components/Search/index';
+import SearchSpotify from './components/Search/index';
 import Playlists from './components/UserPlaylists/index';
 
 
@@ -95,7 +95,7 @@ class App extends Component {
               username={this.state.username} _id={this.state._id}
             />} />
       </div>
-      <Route path='/search' component={Search} />
+      <Route path='/search' component={SearchSpotify} />
       <Route path='/playlists' component={Playlists} />
     </div>
     </HashRouter>
