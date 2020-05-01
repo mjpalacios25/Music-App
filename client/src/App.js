@@ -79,6 +79,7 @@ class App extends Component {
               username={this.state.username} _id={this.state._id}
             />} />
       </div>
+      
     </div>
     </HashRouter>
   );
