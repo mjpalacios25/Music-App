@@ -5,7 +5,7 @@ import API from "../../utils/API";
 
 var request = require('request'); // "Request" library
 
-function Search() {
+function Search(props) {
   const [userState, setUser] = useState({}); //a user's information is stored here
   const [searchState, setSearch] = useState(); // terms to search for are stored here
   const [resultState, setResults] = useState([]); //used for artist and album search results
@@ -13,13 +13,13 @@ function Search() {
   const searchUrl = "https://api.spotify.com/v1/search?q="
 
   useEffect(() => {
-    loadusers();
+    loadusers(props.id);
     
   }, []);
 
-  function loadusers() {
+  function loadusers(id) {
     
-    const id = "5ea8c3eebb48ce2f46ef9806"; //user id goes here
+    //const id = "5ea8c3eebb48ce2f46ef9806"; //user id goes here
     API.getSingleUser(id)
       .then(res => {
         console.log({res});

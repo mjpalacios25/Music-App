@@ -7,15 +7,16 @@ import API from "../../utils/API";
 function Playlists(props) {
   const [userState, setUser] = useState({});
   const [playlistState, setPlaylist] = useState({});
+  const updateUser = props._id
 
   useEffect(() => {
     loadusers(props._id);
     
   }, []);
 
-  function loadusers() {
-    
-    const id = "5ea8c3eebb48ce2f46ef9806"; //user id goes here
+  function loadusers(id) {
+    console.log(id)
+    // const id = "5ea8c3eebb48ce2f46ef9806"; //user id goes here
     API.getSingleUser(id)
       .then(res => {
         console.log({res});
@@ -27,9 +28,9 @@ function Playlists(props) {
 //create and retrieve playlists
   function createPlaylist(event){
     event.preventDefault();
-    const id = "5ea8c3eebb48ce2f46ef9806"; //user id goes here
+    const id = updateUser; //user id goes here
 
-    console.log(playlistState)
+    console.log(playlistState, id)
 
     API.createPlaylist(id, playlistState)
       .then( res => {
