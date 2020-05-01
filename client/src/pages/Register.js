@@ -48,17 +48,17 @@ class Register extends Component {
     
     render() {
         return (
-    <div className="register-div">
-     <form >
+	<div className="register-div">
+	 <form >
             <div className="form-group">
-                <label htmlFor="exampleInputEmail1">Username</label>
+			<label htmlFor="exampleInputEmail1" className="entryLabel">Username</label>
                 <input type="text" className="form-control" aria-describedby="enterUsername" placeholder="Enter username" id="username" name="username" value={this.state.username} onChange={this.handleChange}/>
             </div>
             <div className="form-group">
-                <label htmlFor="exampleInputPassword1">Password</label>
+            <label htmlFor="exampleInputPassword1" className="entryLabel">Password</label>
                 <input type="password" className="form-control" id="password" placeholder="Password" name="password" value={this.state.password} onChange={this.handleChange}/>
             </div>
-                    <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Sign up</button>
+                    <button type="submit" className="btn btn-primary userButton" onClick={this.handleSubmit}>Sign up</button>
         </form>
     </div>
         )

@@ -4,8 +4,37 @@ body {
     background-color: $bkrnd;
 }
 
+.entryLabel {
+    margin-bottom:10px;
+}
+
+i {
+    color:$pink;
+    font-size:50px;
+    display:block;
+}
+
 ul {
     display:inline;
+}
+
+.userButton {
+    color:$teal;
+    font-family:$drip;
+    background-color:$darkteal;
+    border-style: double;
+    border-color:$teal;
+    &:hover {
+        background-color:black;
+        border-color:teal;
+    }
+}
+
+.register-div {
+    border: 4px solid $teal;
+    padding: 25px;
+    margin-top:20px;
+    @include fadeIn;
 }
 
 .userNav {
@@ -45,6 +74,16 @@ video {
 
 .blink_me {
     animation: blinker 1s linear infinite;
+  }
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .blink_me2 {
+    animation: blinker 2s linear infinite;
   }
   
   @keyframes blinker {

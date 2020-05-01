@@ -2,8 +2,66 @@ body {
   background-color: black;
 }
 
+.entryLabel {
+  margin-bottom: 10px;
+}
+
+i {
+  color: #e992e9;
+  font-size: 50px;
+  display: block;
+}
+
 ul {
   display: inline;
+}
+
+.userButton {
+  color: #0ef3ae;
+  font-family: "Nosifer", cursive;
+  background-color: #2b584b;
+  border-style: double;
+  border-color: #0ef3ae;
+}
+
+.userButton:hover {
+  background-color: black;
+  border-color: teal;
+}
+
+.register-div {
+  border: 4px solid #0ef3ae;
+  padding: 25px;
+  margin-top: 20px;
+  webkit-animation: fadein 2s;
+  /* Safari, Chrome and Opera > 12.1 */
+  /* Firefox < 16 */
+  /* Internet Explorer */
+  /* Opera < 12.1 */
+  -webkit-animation: fadein 2s;
+          animation: fadein 2s;
+  /* Firefox < 16 */
+  /* Safari, Chrome and Opera > 12.1 */
+  /* Internet Explorer */
+  /* Opera < 12.1 */
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .userNav {
@@ -49,6 +107,17 @@ video {
   50% {
     opacity: 0;
   }
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.blink_me2 {
+  -webkit-animation: blinker 2s linear infinite;
+          animation: blinker 2s linear infinite;
 }
 
 @keyframes blinker {

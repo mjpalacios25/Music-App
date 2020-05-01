@@ -77,8 +77,8 @@ class App extends Component {
       <div className="content">
         <div className="userNav">
           <span><NavLink to='/search' style={{ color: 'white'}}> Search </NavLink></span> <br />
-          <hr className="blink_me"/>
-          <span><NavLink to='/playlists' style={{ color: 'white'}}> Playlists </NavLink></span>
+          <hr className="blink_me2"/>
+          <span><NavLink to='/playlists' style={{ color: 'white'}}> Pl<i class="fas fa-headphones-alt blink_me"></i>ylists </NavLink></span>
         </div>
      <Route path='/' component={Home} />
       <Route path='/login'
