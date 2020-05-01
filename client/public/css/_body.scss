@@ -4,9 +4,39 @@ body {
     background-color: $bkrnd;
 }
 
+h1 {
+    color:$pink;
+    font-family: $trytwo;
+    margin-bottom:10px;
+    text-decoration:underline;
+    font-weight:bold;
+    padding-bottom:10px;
+}
+
+.input-marg {
+    padding:10px;
+}
+.search-form {
+    margin-top:30px;
+    border: $teal 3px solid;
+    border-radius: 5px;
+    @include fadeIn;
+}
+
+.search-results{
+    padding: 10px;
+    margin-bottom: 10px;
+    @include fadeIn;
+}
+
+.list-group  {
+    color:black;
+}
+
 hr {
     width:50%;
-    border-color:$teal;
+    border:$teal 3px solid;
+    border-radius: 10px;
 }
 
 .entryLabel {
@@ -46,6 +76,7 @@ ul {
 .register-div {
     border: 4px solid $teal;
     padding: 25px;
+    border-radius: 7px;
     margin-top:20px;
     @include fadeIn;
 }
@@ -54,7 +85,8 @@ ul {
     font-family: $drip;
     text-align:center;
     border: 4px $teal solid;
-    font-size: 50px;
+    border-radius: 7px;
+    font-size: 35px;
     margin-top:50px;
     padding:25px;
     color:white;
