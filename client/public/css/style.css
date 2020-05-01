@@ -2,9 +2,96 @@ body {
   background-color: black;
 }
 
+h1 {
+  color: #e992e9;
+  font-family: "Megrim", cursive;
+  margin-bottom: 10px;
+  text-decoration: underline;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.input-marg {
+  padding: 10px;
+}
+
+.search-form {
+  margin-top: 30px;
+  border: #0ef3ae 3px solid;
+  border-radius: 5px;
+  webkit-animation: fadein 2s;
+  /* Safari, Chrome and Opera > 12.1 */
+  /* Firefox < 16 */
+  /* Internet Explorer */
+  /* Opera < 12.1 */
+  -webkit-animation: fadein 2s;
+          animation: fadein 2s;
+  /* Firefox < 16 */
+  /* Safari, Chrome and Opera > 12.1 */
+  /* Internet Explorer */
+  /* Opera < 12.1 */
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.search-results {
+  padding: 10px;
+  margin-bottom: 10px;
+  webkit-animation: fadein 2s;
+  /* Safari, Chrome and Opera > 12.1 */
+  /* Firefox < 16 */
+  /* Internet Explorer */
+  /* Opera < 12.1 */
+  -webkit-animation: fadein 2s;
+          animation: fadein 2s;
+  /* Firefox < 16 */
+  /* Safari, Chrome and Opera > 12.1 */
+  /* Internet Explorer */
+  /* Opera < 12.1 */
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.list-group {
+  color: black;
+}
+
 hr {
   width: 50%;
-  border-color: #0ef3ae;
+  border: #0ef3ae 3px solid;
+  border-radius: 10px;
 }
 
 .entryLabel {
@@ -44,6 +131,7 @@ ul {
 .register-div {
   border: 4px solid #0ef3ae;
   padding: 25px;
+  border-radius: 7px;
   margin-top: 20px;
   webkit-animation: fadein 2s;
   /* Safari, Chrome and Opera > 12.1 */
@@ -80,7 +168,8 @@ ul {
   font-family: "Nosifer", cursive;
   text-align: center;
   border: 4px #0ef3ae solid;
-  font-size: 50px;
+  border-radius: 7px;
+  font-size: 35px;
   margin-top: 50px;
   padding: 25px;
   color: white;

@@ -2,7 +2,7 @@ import React from "react";
 
 export function Input(props) {
     return(
-        <div className="form-group mb-3">
+        <div className="form-group mb-3 input-marg">
             <label className="mx-2" > {props.label} </label>
             <input {...props} type="text" className="form-control" aria-describedby={props.describeby} ></input>
             {/* <small id={props.describeby}> {props.description} </small> */}
@@ -12,7 +12,7 @@ export function Input(props) {
 
 export function SubmitBtn(props) {
     return(
-        <button {...props} type="submit" className="btn btn-primary mb-3 mx-2 float-right"> {props.children} </button>
+        <button {...props} type="submit" className="btn mb-3 mx-2 float-right userButton"> {props.children} </button>
     )
 };
 

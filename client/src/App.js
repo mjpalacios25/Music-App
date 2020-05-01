@@ -89,7 +89,6 @@ class App extends Component {
               username={this.state.username} _id={this.state._id} updateUser={this.updateUser} loggedIn={this.state.loggedIn}
             />} />
       </div>
-
       <Route path='/search' component={SearchSpotify} />
       <Route path='/playlists' component={Playlists} />
 
