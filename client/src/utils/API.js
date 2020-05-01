@@ -12,5 +12,9 @@ export default {
     loginUser: function (req) {
         console.log("API " + JSON.stringify(req))
         return axios.post("/api/users/login", req)
+    },
+
+    logoutUser: function (req) {
+        return axios.post("/api/users/logout")
     }
 }
