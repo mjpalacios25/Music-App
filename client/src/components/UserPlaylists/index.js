@@ -98,7 +98,7 @@ function Playlists(props) {
             ))}
           </SelectDrop>
         ) : (
-            <h2>No playlists</h2>
+            <h1>No playlists</h1>
           )}
         </div>
         </div>

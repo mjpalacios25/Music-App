@@ -4,12 +4,22 @@ body {
     background-color: $bkrnd;
 }
 
+h1 {
+    color:$pink;
+    font-family: $trytwo;
+    margin-bottom:10px;
+    text-decoration:underline;
+    font-weight:bold;
+    padding-bottom:10px;
+}
+
 .input-marg {
     padding:10px;
 }
 .search-form {
     margin-top:30px;
     border: $teal 3px solid;
+    border-radius: 5px;
 }
 
 .search-results{
