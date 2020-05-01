@@ -1,12 +1,16 @@
 import React, {Component} from 'react';
 import API from "../utils/API";
+import {Redirect} from "react-router-dom"
+import { set } from 'mongoose';
 
 class Register extends Component {
     constructor() {
 		super()
 		this.state = {
-			username: '',
-			password: '',
+			username: null,
+            password: '',
+            redirectTo: "/register",
+            approved: false
            // confirmPassword: '',
            
 
@@ -31,11 +35,11 @@ class Register extends Component {
 		})
 			.then(response => {
 				console.log(response)
-				if (!response.data.errmsg) {
+				if (!response.data.error) {
 					console.log('successful signup')
-					this.setState({ //redirect to login page
-						redirectTo: '/login'
-					})
+                    this.setState({
+                        approved: true
+                    })
 				} else {
 					console.log('username already taken')
 				}
@@ -47,9 +51,13 @@ class Register extends Component {
     }
     
     render() {
+        if (this.state.approved) {
+            return <Redirect to={{ pathname: "/login"  }} />
+        } else {
         return (
 	<div className="register-div">
 	 <form >
+         <h1>Register</h1>
             <div className="form-group">
 			<label htmlFor="exampleInputEmail1" className="entryLabel">Username</label>
                 <input type="text" className="form-control" aria-describedby="enterUsername" placeholder="Enter username" id="username" name="username" value={this.state.username} onChange={this.handleChange}/>
@@ -62,7 +70,7 @@ class Register extends Component {
         </form>
     </div>
         )
-    }
+    }}
 }
 
 export default Register;
