@@ -12,7 +12,9 @@ class Waveform extends Component {
         this.state = {
             
             _id: props._id,
-            playing: false
+            playing: false,
+            // songLink: "https://p.scdn.co/mp3-preview/3eb16018c2a700240e9dfb8817b6f2d041f15eb1?cid=774b29d4f13844c495f206cafdad9c86",
+            songLink: props.songLink
 
 
         };
@@ -20,15 +22,15 @@ class Waveform extends Component {
     
 
     componentDidMount() {
-        const track = document.querySelector("#track");
+        
 
         this.waveform = WaveSurfer.create({
             container: '#waveform',
             waveColor: 'rgb(14, 243, 174)',
             progressColor: 'rgb(43, 88, 75)'
         });
-
-        this.waveform.load(track.href);
+        this.waveform.load(this.state.songLink);
+        // this.waveform.load("https://p.scdn.co/mp3-preview/3eb16018c2a700240e9dfb8817b6f2d041f15eb1?cid=774b29d4f13844c495f206cafdad9c86");
     };
 
     handlePlay = () => {

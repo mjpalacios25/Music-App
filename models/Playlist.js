@@ -13,7 +13,6 @@ const PlaylistSchema = new Schema({
     songs: {
       type: Array
     }
-  
 });
 
 const Playlist = mongoose.model("Playlist", PlaylistSchema);

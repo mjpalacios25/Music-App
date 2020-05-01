@@ -10,10 +10,18 @@ function Playlists(props) {
   const [songState, setSong] = useState([]);
   const updateUser = props._id
 
+  // this.handleSong = this.handleSong.bind(this)
   useEffect(() => {
     loadusers(props._id);
     
   }, []);
+//On click of an element in the song list will make the songLink update on the profile page which in turn will be passed to the wavesurfer component
+  // function handleSong(event, songLink) {
+  //   event.preventDefault()
+  //   this.props.updateSong({
+  //     songLink: songLink
+  //   })
+  // }
 
   function loadusers(id) {
     console.log(id)
@@ -71,6 +79,7 @@ function Playlists(props) {
     setPlaylist({...playlistState, name: value});
     console.log(name, value)
   };
+  
 
   return (
     <div >
