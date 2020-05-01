@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Link} from "react-router-dom"
 import {Nav} from './components/NavBar';
 import {List, ListItem} from './components/List';
 import {Input, SubmitBtn, SelectDrop, SelectItem} from "./components/Form"
@@ -188,7 +189,7 @@ function App() {
               <p>{user.name}</p>
               {user.songs ? ( 
               <ul> {user.songs.map(songs => (
-                <li> {songs.name} </li>
+                <li> Title:{songs.name}, Id: {songs.songID} </li>
               ))} </ul> ) : 
               (" ") }
               <SubmitBtn onClick={ (event) => deletePlaylist(event, user._id)}>Delete Playlist</SubmitBtn>
