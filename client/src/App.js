@@ -95,8 +95,10 @@ class App extends Component {
               username={this.state.username} _id={this.state._id}
             />} />
       </div>
+
       <Route path='/search' component={Search} />
       <Route path='/playlists' component={Playlists} />
+
     </div>
     </HashRouter>
   );
