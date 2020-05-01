@@ -61,6 +61,7 @@ function SearchSpotify(props) {
     setSearch({...searchState, [name]: value});
     console.log(searchState)
   };
+  
 
 
   //function to load artist, album, or track
@@ -154,45 +155,45 @@ function SearchSpotify(props) {
 
   return (
     <div >
-   
-      <form className="form-inline">
+
+      <form className="form-inline text-center search-form">
 
       <Input 
       label = "Search for Artists"
       onChange = {handleInputChange}
       name = "searchTerms"
-      
       />
-      <SubmitBtn onClick={ (event) => loadSearch(event, "artist")} > Submit </SubmitBtn>
 
-      <Input 
+      <SubmitBtn onClick={ (event) => loadSearch(event, "artist")} id="artist-search" > Submit </SubmitBtn>
+      <br />
+      <Input
       label = "Search for Albums"
       onChange = {handleInputChange}
       name = "searchTerms"
-      
       />
-      <SubmitBtn onClick={(event) => loadSearch(event, "album")} > Submit </SubmitBtn>
 
+      <SubmitBtn  onClick={(event) => loadSearch(event, "album")} id="album-search" > Submit </SubmitBtn>
+      <br />
       <Input 
       label = "Search for Songs"
       onChange = {handleInputChange}
       name = "searchTerms"
       
       />
-      <SubmitBtn onClick={(event) => loadSearch(event, "track")} > Submit </SubmitBtn>
-      
+      <SubmitBtn onClick={(event) => loadSearch(event, "track")} id="song-search"> Submit </SubmitBtn>
+      <br />
       </form>
-      <div className="col-md-5 fluid">
+      <div className="col-md-5 fluid search-results">
         {resultState.length ? (
-          <List>
+          <List >
             {resultState.map(results => (
-              <ListItem key={results.id}>
+              <ListItem key={results.id} >
                 <img
                   src={results.images.length ? (results.images[0].url) : (" ")}
                   style={{ width: "200px", margin: "0 auto" }}
                 />
                 <p> {results.name} </p>
-                {results.type === "artist" ? (<SubmitBtn onClick={(event) => loadSearch(event, "artistAlbums", results.id)} >See Albums</SubmitBtn>)
+                {results.type === "artist" ? (<button onClick={(event) => loadSearch(event, "artistAlbums", results.id)} className="userButton" >See Albums</button>)
                   :
                   (<SubmitBtn onClick={(event) => loadSearch(event, "albumSongs", results.id)} >See Songs</SubmitBtn>)}
               </ListItem>

@@ -2,6 +2,24 @@ body {
   background-color: black;
 }
 
+.input-marg {
+  padding: 10px;
+}
+
+.search-form {
+  margin-top: 30px;
+  border: #0ef3ae 3px solid;
+}
+
+.search-results {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.list-group {
+  color: black;
+}
+
 hr {
   width: 50%;
   border: #0ef3ae 3px solid;
