@@ -18,7 +18,7 @@ export function SubmitBtn(props) {
 
 export function SelectDrop(props){
     return (
-        <select defaultValue="1" className="custom-select custom-select-lg mb-3" {...props}>
+        <select defaultValue="1" className="custom-select custom-select-lg mb-3 search-results" {...props}>
             <option disabled value="1">{props.defaulttext}</option>
             {props.children}
         </select>
