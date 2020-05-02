@@ -47,7 +47,9 @@ router.route("/:id")
 router.route("/playlists/:id")
     .get(playlistController.findbyID)
     .put(playlistController.update)
-    
-    
+    .delete(playlistController.removeSong)
+
+router.route("/playlists/songs/:id")
+    .put(playlistController.removeSong)
 
 module.exports = router;

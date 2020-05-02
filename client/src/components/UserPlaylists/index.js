@@ -22,7 +22,7 @@ function Playlists(props) {
   
 
 function handleSong(event, songLink, songName) {
-    event.preventDefault();
+    //event.preventDefault();
     console.log(songLink, songName);
     setPlaySong({
       songLink: songLink,
@@ -71,12 +71,26 @@ function handleSong(event, songLink, songName) {
       })
   };
 
+  function deleteSong(event, playlistid, songid){
+    event.preventDefault()
+    console.log(playlistid, songid) //user id 
+    const song= {songID: songid}
+   
+    API.removeSong(playlistid, song)
+      .then( res => {
+        console.log(res.data);
+        //setUser(res.data);
+        //loadusers(props._id);
+
+      })
+  };
+
   function seeSongs(event){
     event.preventDefault()
     console.log(event.target.value);
     const id = event.target.value;
     const targetPlaylist = userState.playlists.filter(songs => songs._id === id);
-    console.log(targetPlaylist)
+    console.log({targetPlaylist})
     setSong(targetPlaylist)
     
   };
@@ -129,20 +143,29 @@ function handleSong(event, songLink, songName) {
 {/* <SubmitBtn onClick={(event) => deletePlaylist(event, user._id)}>Delete Playlist</SubmitBtn> */}
         <div className="row">
           <div className="col-md-6 mx-auto ">
-          {songState ? (
+          {songState.length ? (
           <List>
             {songState.map(user => (
               <ListItem key={user._id}>
                 {user.songs ? (
                   <ul> {user.songs.map(songs => (
-                    <li> {songs.name} <SubmitBtn onClick={(event)=> handleSong(event, songs.preview_url, songs.name) } >Play</SubmitBtn> </li>
+                    <li> 
+                      {songs.name} 
+                      <SubmitBtn 
+                        onClick={(event)=> handleSong(event, songs.preview_url, songs.name) } >
+                          Play Song
+                      </SubmitBtn>
+                      {/* <SubmitBtn onClick={(event)=> deleteSong(event, user._id, songs.songID) }>
+                        Delete
+                      </SubmitBtn> */}
+                       </li>
                   ))} </ul>) :
                   (" ")}
               </ListItem>
             ))}
           </List>
         ) : (
-            <h2>No playlists</h2>
+            <h2>No Songs</h2>
           )}
           </div>
 
