@@ -37,6 +37,13 @@ h1 {
     color:black;
 }
 
+.playlist-results {
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size:50%;
+    @include fadeIn;
+}
+
 hr {
     width:50%;
     border:$teal 3px solid;

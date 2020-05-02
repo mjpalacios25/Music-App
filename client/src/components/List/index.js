@@ -9,5 +9,5 @@ export function List({ children }) {
   };
 
 export function ListItem({ children }) {
-  return <li className="list-group-item list-group search-results" style={{borderRadius: '5px', fontFamily: 'Megrim, cursive', fontWeight: 'bold'}}>{children}</li>;
+  return <li className="list-group-item list-group playlist-results" style={{borderRadius: '5px', fontFamily: 'Megrim, cursive', fontWeight: 'bold'}}>{children}</li>;
 };
