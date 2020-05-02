@@ -52,7 +52,7 @@ function SearchSpotify(props) {
       .then( res => {
         console.log(res.data);
         setUser(res.data);
-        loadusers();
+        loadusers(props._id);
 
       })
   }

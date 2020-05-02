@@ -80,7 +80,7 @@ class Profile extends Component {
         {/* <Waveform _id={this.state._id} songLink = {this.state.songLink} songName={this.state.songName}/> */}
         {/* <Waveform _id={this.state._id}/> <br /> <br /> */}
         
-        <Playlists />
+        <Playlists _id={this.state._id} />
         {/* <SearchSpotify _id={this.state._id} /> */}
         
         </div>
