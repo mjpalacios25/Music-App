@@ -157,8 +157,8 @@ function handleSong(event, songLink, songName) {
                       </SubmitBtn>
                       {/* <SubmitBtn onClick={(event)=> deleteSong(event, user._id, songs.songID) }>
                         Delete
-                      </SubmitBtn> */}
-                       </li>
+                      </SubmitBtn>  */}
+                      </li>
                   ))} </ul>) :
                   (" ")}
               </ListItem>

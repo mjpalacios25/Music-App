@@ -35,9 +35,9 @@ export default {
         return axios.put("/api/users/playlists/" + id, song)
     },
 
-    // removeSong: function(id, song){
-    //     return axios.put("/api/users/playlists/songs" + id, song)
-    // },
+    removeSong: function(id, song){
+        return axios.put("/api/users/playlists/songs" + id, song)
+    },
 
     logoutUser: function(){
         return axios.post("/api/users/logout");
