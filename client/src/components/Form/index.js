@@ -27,10 +27,8 @@ export function SelectDrop(props){
 
 export function SelectItem(props){
     return (
-        <div>
         <option value={props.value} {...props}>
             {props.children}
-        </option> <br />
-        </div>
+        </option>
     )
 };
