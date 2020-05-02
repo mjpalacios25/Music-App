@@ -27,7 +27,9 @@ class Profile extends Component {
     }
     updateSong (profileObject) {
         this.setState(profileObject)
-      }
+      };
+
+    handleSong (event) {this.handleSong.bind(this)} ;
 
     logout(event) {
         event.preventDefault()
@@ -75,10 +77,10 @@ class Profile extends Component {
             <button type="submit" className="btn btn-primary userButton" onClick={this.logout}>Logout</button>
         
 
-        <Waveform _id={this.state._id} songLink = {this.state.songLink} songName={this.state.songName}/>
+        {/* <Waveform _id={this.state._id} songLink = {this.state.songLink} songName={this.state.songName}/> */}
         {/* <Waveform _id={this.state._id}/> <br /> <br /> */}
         
-        <Playlists _id={this.state._id} updateSong={this.updateSong} />
+        <Playlists />
         {/* <SearchSpotify _id={this.state._id} /> */}
         
         </div>
