@@ -1,14 +1,10 @@
-
 import React, {Component} from 'react'
-import { Redirect,Link } from 'react-router-dom'
-
-
+import { Redirect, Link } from 'react-router-dom'
 import API from "../utils/API"
-
-
 import Waveform from "../components/Wavesurfer";
 import Playlists from '../components/UserPlaylists'
 import SearchSpotify from '../components/Search'
+
 class Profile extends Component {
     constructor(props) {
         super(props);
