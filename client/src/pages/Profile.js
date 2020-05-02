@@ -20,9 +20,8 @@ class Profile extends Component {
             loggedIn: props.loggedIn,
             songLink: "https://p.scdn.co/mp3-preview/3eb16018c2a700240e9dfb8817b6f2d041f15eb1?cid=774b29d4f13844c495f206cafdad9c86",
             songName: ""
-            
-            
         };
+
         this.logout = this.logout.bind(this)
     }
     updateSong (profileObject) {
@@ -82,7 +81,7 @@ class Profile extends Component {
         
         <Playlists _id={this.state._id} />
         {/* <SearchSpotify _id={this.state._id} /> */}
-        
+       
         </div>
        )}
        else{
