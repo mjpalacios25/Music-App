@@ -52,7 +52,7 @@ function SearchSpotify(props) {
       .then( res => {
         console.log(res.data);
         setUser(res.data);
-        loadusers();
+        loadusers(props._id);
 
       })
   }
@@ -72,22 +72,22 @@ function SearchSpotify(props) {
      client_secret = '6f975753ea5a46708e876e54750806c7', 
      compiledUrl = "",
      artist = searchState.searchTerms
-
+     
      
 
     if (typeSearch === "artist" || typeSearch === "album" || typeSearch === "track"){
       let type = "&type=" + typeSearch;
-      compiledUrl = `${searchUrl}search?q="${artist}${type}&limit=5`;
+      compiledUrl = `${searchUrl}search?q="${artist}${type}&market=US&limit=5`;
       
       console.log(compiledUrl)
     } else if( typeSearch === "artistAlbums"){
       let artistID = extraTerm;
-      compiledUrl = `${searchUrl}artists/${artistID}/albums`;
+      compiledUrl = `${searchUrl}artists/${artistID}/albums?market=US`;
 
       console.log(compiledUrl)
     } else if( typeSearch === "albumSongs"){
       let albumID = extraTerm;
-      compiledUrl = `${searchUrl}albums/${albumID}/tracks`;
+      compiledUrl = `${searchUrl}albums/${albumID}/tracks?market=US`;
 
       console.log(compiledUrl)
     } 

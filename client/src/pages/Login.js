@@ -64,7 +64,7 @@ class Login extends Component {
             <div className="register-div">
             <form>
             <h1>Login</h1>
-            {this.state.invalid && <p>Username or password incorrect</p>}
+            {this.state.invalid && <p className="slash">Username or password incorrect</p>}
             <div className="form-group">
                 <label htmlFor="exampleInputEmail1" className="entryLabel">Username</label>
                 <input type="text" className="form-control" aria-describedby="enterUsername" placeholder="Enter username" id="username" name="username" value={this.state.username} onChange={this.handleChange}/>
