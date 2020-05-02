@@ -13,9 +13,9 @@ class Waveform extends Component {
             
             _id: props._id,
             playing: false,
-            // songLink: "https://p.scdn.co/mp3-preview/3eb16018c2a700240e9dfb8817b6f2d041f15eb1?cid=774b29d4f13844c495f206cafdad9c86",
-            songLink: props.songLink,
-            songName: props.songName
+             songLink: "https://p.scdn.co/mp3-preview/3eb16018c2a700240e9dfb8817b6f2d041f15eb1?cid=774b29d4f13844c495f206cafdad9c86",
+            //songLink: props.songLink,
+            songName: "props.songName"
 
 
         };

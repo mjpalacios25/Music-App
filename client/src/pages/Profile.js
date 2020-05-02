@@ -20,9 +20,8 @@ class Profile extends Component {
             loggedIn: props.loggedIn,
             songLink: "https://p.scdn.co/mp3-preview/3eb16018c2a700240e9dfb8817b6f2d041f15eb1?cid=774b29d4f13844c495f206cafdad9c86",
             songName: ""
-            
-            
         };
+
         this.logout = this.logout.bind(this)
     }
     updateSong (profileObject) {
@@ -75,12 +74,13 @@ class Profile extends Component {
             <button type="submit" className="btn btn-primary userButton" onClick={this.logout}>Logout</button>
         
 
-        <Waveform _id={this.state._id} songLink = {this.state.songLink} songName={this.state.songName}/>
+        {/* <Waveform _id={this.state._id} songLink = {this.state.songLink} songName={this.state.songName}/> */}
         {/* <Waveform _id={this.state._id}/> <br /> <br /> */}
         
-        <Playlists _id={this.state._id} updateSong={this.updateSong} />
+        <Playlists _id={this.state._id} />
+        {/* <Waveform _id={this.state._id} songLink = {this.state.songLink} songName={this.state.songName}/> */}
         {/* <SearchSpotify _id={this.state._id} /> */}
-        
+       
         </div>
        )}
        else{

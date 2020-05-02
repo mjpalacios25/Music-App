@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {List, ListItem} from '../List';
 import {Input, SubmitBtn, SelectDrop, SelectItem} from "../Form"
+import Waveform from "../Wavesurfer";
 import API from "../../utils/API";
 
 
@@ -9,7 +10,7 @@ function Playlists(props) {
   const [playlistState, setPlaylist] = useState({});
   const [songState, setSong] = useState([]);
   const updateUser = props._id
-
+  
   // this.handleSong = this.handleSong.bind(this)
   useEffect(() => {
     loadusers(props._id);
@@ -94,7 +95,9 @@ function Playlists(props) {
         />
         <SubmitBtn onClick={ (event) => createPlaylist(event)} > Create Playlist </SubmitBtn>
       </form>
-
+        <div>
+        <Waveform />
+        </div>
         {/* looks at the users info, then maps over each playlist to list the playlist name and songs.
         there's also a delete button for deleting a playlist */}
         <div className="row">
