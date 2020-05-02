@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {List, ListItem} from '../List';
 import {Input, SubmitBtn, SelectDrop, SelectItem} from "../Form"
-import Waveform from "../Wavesurfer";
+import Waveform from "../Wavesurfer"
 import API from "../../utils/API";
 
 
@@ -9,21 +9,27 @@ function Playlists(props) {
   const [userState, setUser] = useState({});
   const [playlistState, setPlaylist] = useState({});
   const [songState, setSong] = useState([]);
-  const updateUser = props._id
-  
-  // this.handleSong = this.handleSong.bind(this)
+  const updateUser = props._id;
+  const [playsongState, setPlaySong] = useState({});
+
+ 
+
   useEffect(() => {
     loadusers(props._id);
     
   }, []);
 //On click of an element in the song list will make the songLink update on the profile page which in turn will be passed to the wavesurfer component
-  // function handleSong(event, songLink, songName) {
-  //   event.preventDefault()
-  //   this.props.updateSong({
-  //     songLink: songLink,
-  //     songName: songName
-  //   })
-  // }
+  
+
+function handleSong(event, songLink, songName) {
+    event.preventDefault();
+    console.log(songLink, songName);
+    setPlaySong({
+      songLink: songLink,
+      songName: songName
+    });
+    console.log({playsongState})
+  }
 
   function loadusers(id) {
     console.log(id)
@@ -85,6 +91,8 @@ function Playlists(props) {
 
   return (
     <div >
+      
+      
         {/* input field to create a playlist. the submit button takes the playlist info,
         creates the new playlist on the server, returns an object, then reloads the user's info */}
       <form className="form-inline">
@@ -95,9 +103,11 @@ function Playlists(props) {
         />
         <SubmitBtn onClick={ (event) => createPlaylist(event)} > Create Playlist </SubmitBtn>
       </form>
-        <div>
-        <Waveform />
-        </div>
+      <div>
+        {playsongState.songLink ? (<Waveform playSong = {playsongState} />) : ( " " ) }
+        
+      </div>
+        
         {/* looks at the users info, then maps over each playlist to list the playlist name and songs.
         there's also a delete button for deleting a playlist */}
         <div className="row">
@@ -125,7 +135,7 @@ function Playlists(props) {
               <ListItem key={user._id}>
                 {user.songs ? (
                   <ul> {user.songs.map(songs => (
-                    <li> {songs.name} </li>
+                    <li> {songs.name} <SubmitBtn onClick={(event)=> handleSong(event, songs.preview_url, songs.name) } >Play</SubmitBtn> </li>
                   ))} </ul>) :
                   (" ")}
               </ListItem>
