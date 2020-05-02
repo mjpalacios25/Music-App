@@ -55,7 +55,7 @@ class Waveform extends Component {
                 </PlayButton>
                 <Wave id="waveform" />
                 {/* <div>Playlist Here</div> */}
-                 <p className="slash">{this.state.songName}</p>
+                 <p className="songName">{this.state.songName}</p>
                 {/* <Playlists _id={this.state._id}></Playlists> */}
             </WaveformContainer>
             <br />
