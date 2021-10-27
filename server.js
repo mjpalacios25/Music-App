@@ -24,7 +24,9 @@ if (process.env.NODE_ENV === "production") {
 
 //your local database url
 //27017 is the default mongoDB port
-const uri = 'mongodb://localhost:27017/usersdirectory' 
+// const uri = 'mongodb://localhost:27017/usersdirectory' 
+const uri = process.env.MONGODB_URI
+// 'mongodb+srv://user1:testtest@musicapp.pg9uo.mongodb.net/usersdirectory?retryWrites=true&w=majority'
 
 var dbConnection = mongoose.connect(uri).then(
     () => { 
