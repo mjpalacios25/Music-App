@@ -57,7 +57,7 @@ app.use(routes);
 
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/usersdirectory");
+mongoose.connect(uri || "mongodb://localhost/usersdirectory");
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
